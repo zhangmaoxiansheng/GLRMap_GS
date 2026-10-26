@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>点云对照</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:system-ui,"Microsoft YaHei",sans-serif;background:#10151d;color:#e4eaf4}body{display:flex;flex-direction:column}
+header{padding:12px 18px 8px;border-bottom:1px solid #303947;background:#171e28}h1{font-size:17px;margin:0 0 9px;font-weight:600}.toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.group{display:flex;align-items:center;gap:6px}button,select{background:#263141;border:1px solid #455164;color:inherit;border-radius:5px;padding:6px 10px;font-size:13px;cursor:pointer}button.active{background:#316992;border-color:#62a6d4}button:hover{border-color:#91bbdb}label{font-size:13px;color:#ced9e8}input[type=range]{width:125px;accent-color:#67b0df}#frame{width:160px}output{font-variant-numeric:tabular-nums;font-size:13px}.sub{color:#9eafc4;font-size:12px;margin-top:9px}main{position:relative;flex:1;min-height:200px}canvas{display:block;width:100%;height:100%;touch-action:none;outline:none}#stats{position:absolute;top:12px;left:16px;background:#131b26dc;border:1px solid #435369;padding:8px 11px;border-radius:6px;font-size:13px;pointer-events:none}#splitLabels{position:absolute;top:12px;left:0;right:0;display:none;pointer-events:none}#splitLabels>span{width:33.333%;padding:7px 12px;text-align:center;font-size:13px;text-shadow:0 1px 3px black;background:#131b2680}#loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#10151dee;font-size:16px}#help{position:absolute;bottom:10px;left:14px;color:#c1ccda;background:#10151db0;font-size:12px;padding:6px 8px;border-radius:4px;pointer-events:none}#fps{float:right;color:#a5bdd0;margin-left:18px}
+</style>
+<header>
+  <h1 id="title"></h1>
+  <div class="toolbar">
+    <div class="group" id="branches"></div>
+    <div class="group"><label for="pointSize">点大小</label><input id="pointSize" type="range" min=".3" max="3" step=".1" value=".8"><output id="pointSizeValue">0.8 px</output></div>
+    <div class="group"><label for="brightness">亮度</label><input id="brightness" type="range" min=".5" max="3" step=".1" value="1.5"><output id="brightnessValue">1.5×</output></div>
+    <div class="group"><button id="source">源相机</button><button id="overview">概览</button><button id="top">俯视</button></div>
+    <div class="group"><label for="frame">相机帧</label><input id="frame" type="range" min="0" value="0"><output id="frameName"></output></div>
+    <label><input id="split" type="checkbox">三组并排</label>
+    <label><input id="trajectory" type="checkbox">相机轨迹</label>
+    <label id="includeBLabel" style="display:none"><input id="includeB" type="checkbox" checked>包含B级</label>
+    <select id="background" aria-label="背景"><option value="dark">深色背景</option><option value="light">浅色背景</option></select>
+    <button id="fullscreen">全屏</button>
+  </div>
+  <div class="sub">展示点数与原始点数见面板 · 原始RGB（显示亮度可调） · 同一相机与点大小</div>
+</header>
+<main>
+  <canvas id="canvas" tabindex="0" aria-label="可旋转缩放的三维点云"></canvas>
+  <div id="stats"></div><div id="splitLabels"></div>
+  <div id="loading">正在读取内嵌点云…</div>
+  <div id="help">左键拖动旋转 · 右键或Shift拖动平移 · 滚轮缩放 · 双击返回源相机</div>
+</main>
+<script id="settings" type="application/json">__SETTINGS_JSON__</script>
+__CLOUD_PAYLOAD__
+<script>
+'use strict';
+const config=JSON.parse(document.getElementById('settings').textContent);
+const $=id=>document.getElementById(id), canvas=$('canvas');
+const state={selected:0,split:config.defaultSplit||false,includeB:true,pointSize:config.pointSize,brightness:config.brightness,trajectory:false,background:'dark',frame:Math.floor((config.cameras.length-1)/2),ready:false,dirty:true};
+const add=(a,b)=>a.map((x,i)=>x+b[i]), sub=(a,b)=>a.map((x,i)=>x-b[i]), mul=(a,k)=>a.map(x=>x*k);
+const dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0), cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const norm=a=>Math.hypot(...a), unit=a=>mul(a,1/Math.max(1e-12,norm(a)));
+function rotate(v,axis,angle){axis=unit(axis);return add(add(mul(v,Math.cos(angle)),mul(cross(axis,v),Math.sin(angle))),mul(axis,dot(axis,v)*(1-Math.cos(angle))));}
+function lookAt(eye,target,up){const z=unit(sub(eye,target)),x=unit(cross(up,z)),y=cross(z,x);return new Float32Array([x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-dot(x,eye),-dot(y,eye),-dot(z,eye),1]);}
+const span=Math.max(config.step*10,norm(sub(config.bounds[1],config.bounds[0])));
+function perspective(fov,aspect){const near=config.step*.025,far=Math.max(span*100,config.step*10000),f=1/Math.tan(fov/2);return new Float32Array([f/aspect,0,0,0,0,f,0,0,0,0,(far+near)/(near-far),-1,0,0,2*far*near/(near-far),0]);}
+let eye,target,up,fov;
+function sourceView(){const c=config.cameras[state.frame];eye=c.eye.slice();target=add(eye,mul(c.forward,config.step*20));up=c.up.slice();fov=c.fov;state.dirty=true;updateLabels();}
+function overview(top=false){const c=config.cameras[state.frame],center=mul(add(config.bounds[0],config.bounds[1]),.5);target=center;eye=top?add(center,mul(c.up,span*.8)):add(add(center,mul(c.forward,-span*.65)),mul(c.up,span*.4));up=top?c.forward.slice():c.up.slice();fov=c.fov;state.dirty=true;}
+function updateLabels(){const c=config.cameras[state.frame],cloud=config.clouds[state.selected];$('frameName').textContent=`${c.name} · ${c.seconds.toFixed(1)}s`;const count=state.includeB||!cloud.qualityAvailable?cloud.count:cloud.gradeA;const filterText=cloud.hasTrackObservations===false?(cloud.observationLabel||'非匹配采样（无Track）'):config.supportFilter?(state.includeB?'全部点':'≥3视图点'):(cloud.qualityAvailable?(state.includeB?'A+B':'仅A级'):'100%');$('stats').textContent=`${cloud.label}  展示${count.toLocaleString()} / 原始${cloud.originalCount.toLocaleString()}点 · ${filterText}`;$('stats').style.display=state.split?'none':'block';$('splitLabels').style.display=state.split?'flex':'none';document.querySelectorAll('#splitLabels span').forEach((span,i)=>{const item=config.clouds[config.splitIndices[i]],number=state.includeB||!item.qualityAvailable?item.count:item.gradeA;span.textContent=`${item.label} · 展示${number.toLocaleString()} / 原始${item.originalCount.toLocaleString()}点 · ${item.observationLabel||`${item.pairs}对`}`;});}
+$('title').textContent=`${config.title} · 离线点云对照`;
+document.title=$('title').textContent;
+config.clouds.forEach((cloud,i)=>{const b=document.createElement('button');b.textContent=cloud.label;b.classList.toggle('active',i===0);b.onclick=()=>{state.selected=i;document.querySelectorAll('#branches button').forEach((button,k)=>button.classList.toggle('active',k===i));updateLabels();state.dirty=true;};$('branches').appendChild(b);});
+config.splitIndices.forEach(()=>{const label=document.createElement('span');label.style.width=`${100/config.splitIndices.length}%`;$('splitLabels').appendChild(label);});
+$('split').checked=state.split;
+$('split').parentElement.lastChild.textContent=`${config.splitIndices.length}组并排`;
+if(config.comparisonNote)document.querySelector('header .sub').textContent=config.comparisonNote;
+if(config.supportFilter)$('includeBLabel').lastChild.textContent='包含两视图点（取消后仅≥3视图）';
+if(config.qualityAvailable)$('includeBLabel').style.display='inline';
+$('includeB').onchange=event=>{state.includeB=event.target.checked;updateLabels();state.dirty=true;};
+$('frame').max=config.cameras.length-1;$('frame').value=state.frame;
+$('frame').oninput=event=>{state.frame=Number(event.target.value);sourceView();};
+$('pointSize').oninput=event=>{state.pointSize=Number(event.target.value);$('pointSizeValue').textContent=`${state.pointSize.toFixed(1)} px`;state.dirty=true;};
+$('brightness').oninput=event=>{state.brightness=Number(event.target.value);$('brightnessValue').textContent=`${state.brightness.toFixed(1)}×`;state.dirty=true;};
+$('source').onclick=sourceView;$('overview').onclick=()=>overview();$('top').onclick=()=>overview(true);
+$('split').onchange=event=>{state.split=event.target.checked;updateLabels();state.dirty=true;};
+$('trajectory').onchange=event=>{state.trajectory=event.target.checked;state.dirty=true;};
+$('background').onchange=event=>{state.background=event.target.value;state.dirty=true;};
+$('fullscreen').onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+canvas.oncontextmenu=event=>event.preventDefault();canvas.ondblclick=sourceView;
+let drag=null;
+canvas.onpointerdown=event=>{canvas.focus();canvas.setPointerCapture(event.pointerId);drag={x:event.clientX,y:event.clientY,pan:event.button===2||event.shiftKey};};
+canvas.onpointerup=()=>drag=null;canvas.onpointercancel=()=>drag=null;
+canvas.onpointermove=event=>{if(!drag)return;const dx=event.clientX-drag.x,dy=event.clientY-drag.y;drag.x=event.clientX;drag.y=event.clientY;
+  const offset=sub(eye,target),right=unit(cross(unit(mul(offset,-1)),up));
+  if(drag.pan||event.shiftKey){const scale=2*norm(offset)*Math.tan(fov/2)/canvas.clientHeight,shift=add(mul(right,-dx*scale),mul(up,dy*scale));eye=add(eye,shift);target=add(target,shift);}
+  else{let v=rotate(offset,up,-dx*.005);v=rotate(v,right,-dy*.005);up=unit(rotate(up,right,-dy*.005));eye=add(target,v);}
+  state.dirty=true;
+};
+canvas.addEventListener('wheel',event=>{event.preventDefault();const offset=sub(eye,target),distance=norm(offset),newDistance=Math.max(config.step*.1,Math.min(span*20,distance*Math.exp(Math.max(-100,Math.min(100,event.deltaY))*.0015)));eye=add(target,mul(offset,newDistance/distance));state.dirty=true;},{passive:false});
+const gl=canvas.getContext('webgl',{alpha:false,antialias:true,preserveDrawingBuffer:true});
+const buffers=[];
+function shader(type,source){const result=gl.createShader(type);gl.shaderSource(result,source);gl.compileShader(result);if(!gl.getShaderParameter(result,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(result));return result;}
+async function start(){
+  if(!gl)throw Error('浏览器未启用WebGL，请在浏览器中打开并启用硬件加速。');
+  const program=gl.createProgram();
+  gl.attachShader(program,shader(gl.VERTEX_SHADER,`attribute vec3 position;attribute vec3 color;attribute float quality;uniform mat4 view;uniform mat4 projection;uniform float size;uniform float includeB;varying vec3 rgb;void main(){gl_Position=projection*view*vec4(position,1.);if(includeB<.5&&quality>1.5)gl_Position=vec4(2.,2.,2.,1.);gl_PointSize=size;rgb=color;}`));
+  gl.attachShader(program,shader(gl.FRAGMENT_SHADER,`precision mediump float;varying vec3 rgb;uniform bool points;uniform float coverage;uniform float brightness;void main(){if(points&&length(gl_PointCoord-vec2(.5))>.5)discard;gl_FragColor=vec4(points?min(rgb*brightness,vec3(1.)):rgb,points?coverage:1.);}`));
+  gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));gl.useProgram(program);
+  const position=gl.getAttribLocation(program,'position'),color=gl.getAttribLocation(program,'color');gl.enableVertexAttribArray(position);gl.enableVertexAttribArray(color);
+  const quality=gl.getAttribLocation(program,'quality');
+  const uniforms={};for(const name of ['view','projection','size','points','coverage','brightness','includeB'])uniforms[name]=gl.getUniformLocation(program,name);
+  for(let i=0;i<config.clouds.length;i++){
+    $('loading').textContent=`正在载入${config.clouds[i].label}：${config.clouds[i].count.toLocaleString()}点…`;
+    await new Promise(resolve=>requestAnimationFrame(resolve));
+    const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,config.clouds[i].count*16,gl.STATIC_DRAW);
+    let offset=0;
+    for(const element of document.querySelectorAll(`[data-cloud="${i}"]`)){
+      const raw=atob(element.textContent.trim()),bytes=new Uint8Array(raw.length);
+      for(let k=0;k<raw.length;k++)bytes[k]=raw.charCodeAt(k);
+      gl.bufferSubData(gl.ARRAY_BUFFER,offset,bytes);offset+=bytes.length;element.remove();
+      await new Promise(resolve=>requestAnimationFrame(resolve));
+    }
+    if(offset!==config.clouds[i].count*16)throw Error('点云字节数不一致');
+    buffers.push(buffer);
+  }
+  const pathData=new Float32Array(config.cameras.flatMap(c=>[...c.eye,.25,.8,1]));
+  const pathBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,pathBuffer);gl.bufferData(gl.ARRAY_BUFFER,pathData,gl.STATIC_DRAW);
+  gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+  sourceView();state.ready=true;$('loading').style.display='none';
+  function scene(index,x,width){
+    gl.viewport(x,0,width,canvas.height);gl.scissor(x,0,width,canvas.height);
+    gl.uniformMatrix4fv(uniforms.view,false,lookAt(eye,target,up));gl.uniformMatrix4fv(uniforms.projection,false,perspective(fov,width/canvas.height));
+    const pixels=state.pointSize*Math.min(window.devicePixelRatio||1,2);
+    gl.uniform1f(uniforms.size,Math.max(1,pixels));gl.uniform1f(uniforms.coverage,Math.min(1,pixels*pixels));gl.uniform1i(uniforms.points,1);
+    gl.uniform1f(uniforms.brightness,state.brightness);
+    gl.uniform1f(uniforms.includeB,state.includeB?1.:0.);
+    gl.bindBuffer(gl.ARRAY_BUFFER,buffers[index]);gl.vertexAttribPointer(position,3,gl.FLOAT,false,16,0);gl.vertexAttribPointer(color,3,gl.UNSIGNED_BYTE,true,16,12);
+    gl.enableVertexAttribArray(quality);gl.vertexAttribPointer(quality,1,gl.UNSIGNED_BYTE,false,16,15);
+    gl.drawArrays(gl.POINTS,0,config.clouds[index].count);
+    if(state.trajectory){gl.disableVertexAttribArray(quality);gl.vertexAttrib1f(quality,0.);gl.bindBuffer(gl.ARRAY_BUFFER,pathBuffer);gl.vertexAttribPointer(position,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(color,3,gl.FLOAT,false,24,12);gl.uniform1i(uniforms.points,0);gl.drawArrays(gl.LINE_STRIP,0,config.cameras.length);}
+  }
+  function render(){
+    if(state.dirty){const scale=Math.min(window.devicePixelRatio||1,2),w=Math.max(1,Math.round(canvas.clientWidth*scale)),h=Math.max(1,Math.round(canvas.clientHeight*scale));if(w!==canvas.width||h!==canvas.height){canvas.width=w;canvas.height=h;}
+      gl.disable(gl.SCISSOR_TEST);const bg=state.background==='dark'?[.063,.082,.114,1]:[.96,.97,.98,1];gl.clearColor(...bg);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.SCISSOR_TEST);
+      if(state.split){const count=config.splitIndices.length;for(let i=0;i<count;i++){const x=Math.floor(canvas.width*i/count),end=Math.floor(canvas.width*(i+1)/count);scene(config.splitIndices[i],x,end-x);}}
+      else scene(state.selected,0,canvas.width);
+      state.dirty=false;const error=gl.getError();if(error!==gl.NO_ERROR){window.viewerError=`WebGL error ${error}`;console.error(window.viewerError);}
+    }
+    requestAnimationFrame(render);
+  }
+  new ResizeObserver(()=>state.dirty=true).observe(canvas);
+  window.viewer={state,config,gl,render,sourceView,getCamera:()=>({eye,target,up,fov}),counts:config.clouds.map(c=>c.count)};
+  render();
+}
+start().catch(error=>{$('loading').textContent=error.message;window.viewerError=error.message;console.error(error);});
+canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();$('loading').style.display='flex';$('loading').textContent='GPU上下文失效，请刷新查看器。';});
+</script>
+</html>

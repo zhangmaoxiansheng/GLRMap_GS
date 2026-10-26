@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+paths.local.json
+models/
+cache/
+third_party/
+experiments/
+output/
+output_video/
+data/
+*.log
+# Historical source/config snapshots remain local, outside the new code repository.
+repository/
+external_sources/
+reference_configs/
+source_manifest.json
+FILES.tsv
+verification.json
+LOGIC_REVIEW_20261023.md

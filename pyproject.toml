@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "GLRMap-GS"
+version = "0.1.0"
+description = "Geometry-guided road point clouds and Gaussian splatting"
+readme = "README.md"
+requires-python = ">=3.9"
+
+[project.scripts]
+glrmap-gs = "GLRMap_GS.pipeline.window:main"
+
+[tool.setuptools]
+package-dir = {"GLRMap_GS" = "."}
+packages = ["GLRMap_GS", "GLRMap_GS.pipeline", "GLRMap_GS.sfm", "GLRMap_GS.matching", "GLRMap_GS.triangulation", "GLRMap_GS.road", "GLRMap_GS.gs", "GLRMap_GS.visualization", "GLRMap_GS.depth_prior", "GLRMap_GS.tools"]
+include-package-data = false
+
+[tool.setuptools.package-data]
+GLRMap_GS = ["config/*.json"]
+"GLRMap_GS.visualization" = ["*.html"]

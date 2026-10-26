@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "matcher": "romav2",
+  "version": "2.0.1",
+  "checkpoint": "models/romav2.0.1.pt",
+  "checkpoint_sha256": "1557dec0d21b62366465f7ff4d5fdf228cc695d0582e196ad2b80e05230828b7",
+  "setting": "fast",
+  "bidirectional": true,
+  "threshold": null,
+  "matches_per_pair": 5000,
+  "min_overlap": 0.5,
+  "local_correlation": "native_torch",
+  "kde_chunk_size": 1024,
+  "seed": 142
+}

@@ -1,0 +1,15 @@
+{
+  "gs_backend": "/opt/projects/gaussian-splatting",
+  "roma_assets": ".",
+  "romav2_source": "/opt/projects/RoMaV2",
+  "dinov3_source": "/opt/projects/dinov3",
+  "sparse_weights": "~/.cache/torch/hub/checkpoints",
+  "resplat": "/opt/projects/resplat",
+  "colmap": "/usr/local/bin/colmap",
+  "glomap": "/opt/projects/glomap/build/glomap/glomap",
+  "python_sfm": "/opt/envs/sfm/bin/python",
+  "python_matching": "/opt/envs/roma/bin/python",
+  "python_resplat": "/opt/envs/resplat/bin/python",
+  "python_gs": "/opt/envs/gs/bin/python",
+  "gpu_lock": "cache/gpu.lock"
+}
