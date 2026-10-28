@@ -11,6 +11,13 @@ from ..runtime import ROOT, GS_ROOT, GPU_LOCK, python_for
 FIELDS = ('_xyz', '_features_dc', '_features_rest', '_opacity', '_scaling', '_rotation')
 
 
+def road_frozen_fields(c):
+    appearance = c.get('road_train_appearance', False)
+    if not isinstance(appearance, bool):
+        raise ValueError('road_train_appearance must be a boolean')
+    return ('_xyz', '_scaling', '_rotation') if appearance else FIELDS
+
+
 def write(path, data):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -32,6 +39,7 @@ def effective(path):
     if not isinstance(c['steps_per_view_per_phase'],int) or c['steps_per_view_per_phase']<=0:raise ValueError('Positive integer per-view training budget required')
     if not isinstance(c['checkpoint_every'],int) or c['checkpoint_every']<=0:raise ValueError('Positive checkpoint interval required')
     c['implementation']='GLRMap_GS.gs'
+    road_frozen_fields(c)
     for name in ['images','cameras','resplat_ply','road_ply','road_constraints','road_depth','road_masks','dynamic_masks']:
         if not Path(c[name]).exists():raise FileNotFoundError(c[name])
     fingerprint=hashlib.sha256(json.dumps(c,sort_keys=True).encode()).hexdigest()

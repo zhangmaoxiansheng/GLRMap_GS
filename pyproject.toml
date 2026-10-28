@@ -18,5 +18,5 @@ packages = ["GLRMap_GS", "GLRMap_GS.pipeline", "GLRMap_GS.sfm", "GLRMap_GS.match
 include-package-data = false
 
 [tool.setuptools.package-data]
-GLRMap_GS = ["config/*.json"]
+GLRMap_GS = ["config/*.json", "config/*.txt", "patches/*.patch", "patches/*.json", "patches/*.md"]
 "GLRMap_GS.visualization" = ["*.html"]

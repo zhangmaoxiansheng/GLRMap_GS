@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "backend": {
+    "repository": "https://github.com/graphdeco-inria/gaussian-splatting.git",
+    "revision": "54c035f7834b564019656c3e3fcc3646292f727d",
+    "patch": "gaussian-splatting.patch",
+    "patch_sha256": "aeaaf165c386c920f9204ed72343e4a0fa2133f6d8e1f9be4843d22863954844",
+    "patched_files_sha256": {
+      "arguments/__init__.py": "fc5f7c80de4e9d8869071968c695dbccaf540d95b7a61e1a5cb636f9b85feaf6",
+      "gaussian_renderer/__init__.py": "091fda71321c25ef27b0c6a4a545f517482f051fc9915a4a71192dd6ea02d49b",
+      "scene/__init__.py": "ab68a95fc115e240cfdf247bfb01fc2b3f2cf5bc189e1c562b2f3fcdda279bfb",
+      "scene/gaussian_model.py": "301ea16ddc0d48ce73a8312ef21d44b77829454c7e934bddca78ac7213e1b6d2",
+      "utils/loss_utils.py": "aec93c6462db4237f46469af859c930999ff5d26a61d3e222c842aef04029470",
+      "utils/sky_mask_utils.py": "5a73053d6b3ae8ddcf0acec1e031c820b3a5d5180dba3b9e254bc48f387587e9",
+      "complete_sanhuan_sam31_road_masks.py": "0c20ebb4f6ca0440c89028b2980c46b374b21766183b342b9f5d8c7412aef8e6"
+    }
+  },
+  "rasterizer": {
+    "repository": "https://github.com/graphdeco-inria/diff-gaussian-rasterization.git",
+    "revision": "9c5c2028f6fbee2be239bc4c9421ff894fe4fbe0",
+    "patch": "diff-gaussian-rasterization.patch",
+    "patch_sha256": "84c6e89c2a299fb6a6abd06dcf23e0e5984b657ca1723bf3029e3e203313285d",
+    "patched_files_sha256": {
+      "cuda_rasterizer/forward.cu": "0a2997a3059019457d9cf494f244f4a21b88b53605e53fd86f06492d5d42b357",
+      "cuda_rasterizer/forward.h": "adad9addca6e294f4f17f68d0ed066b3cd1da1cb4069617c0b8dfa2b88d9c1d5",
+      "cuda_rasterizer/rasterizer.h": "5781acec3e2f802da5020e755b53f0af4b3d16a915544601686cda6935139c9d",
+      "cuda_rasterizer/rasterizer_impl.cu": "a54323e822edd5b962dd6314d7d49d9ce7625befb051203a450b1864c53d0ba7",
+      "diff_gaussian_rasterization/__init__.py": "06d3c1ad3dd3b357a5346e0f23cb4c7bfec09e5a8aa6b5522c3b96fbb26828fe",
+      "ext.cpp": "50a7f10c08f1bf2c483b87f1431b519739f6e5e5fa9a8bd836ff917962eb1ab4",
+      "rasterize_points.cu": "5d41ad76892437db982c38ee3f4b4785e9b37fab1a0e94df592515ecde4480fc",
+      "rasterize_points.h": "2a096409b97fe8047d2812f91493fab667563d3ffb758bfe6594d7f6b02652c2"
+    }
+  },
+  "submodules": {
+    "submodules/simple-knn": "86710c2d4b46680c02301765dd79e465819c8f19",
+    "submodules/diff-gaussian-rasterization/third_party/glm": "5c46b9c07008ae65cb81ab79cd677ecc1934b903"
+  },
+  "scope": "Dependencies consumed by GLRMap_GS; existing project train.py/render.py experiments are not required"
+}

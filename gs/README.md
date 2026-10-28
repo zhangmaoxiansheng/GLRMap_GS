@@ -1,4 +1,4 @@
-# 高斯初始化与固定道路训练
+# 高斯初始化与道路几何固定训练
 
 已将当前100视角RoMa道路＋ReSplat的道路适配、世界坐标转换、混合初始化和两阶段训练提取到本目录。道路数学直接复用整理后的`road/`，不导入旧DIM实验或试跑脚本中的`SOURCE/OUT/FIRST`全局变量。原脚本、源码快照、模型及后台队列保持原样。
 
@@ -25,7 +25,7 @@ flowchart LR
 | [rendering.py](rendering.py) | 初始化审计及visualization共用的gsplat渲染，不编排视频或HTML |
 | [../pipeline/gs.py](../pipeline/gs.py) | `road-assets/plan/prepare/train/run/status`；顺序切换两个环境，拥有流水线输出锁与阶段产物校验 |
 
-ReSplat模型推理使用本库[原生入口](../tools/run_resplat_forward_windows.py)，SDK位置在 `paths.local.json` 的 `resplat` 配置。本GS模块消费原生PLY；完整推理由 `pipeline.window` 串联。1000帧13窗队列见[pipeline/gs_queue.py](../pipeline/gs_queue.py)，横移轨迹和展示见[visualization/](../visualization/README.md)。
+ReSplat模型推理使用本库[原生入口](../tools/run_resplat_forward_windows.py)，SDK位置在 `paths.local.json` 的 `resplat` 配置。本GS模块消费原生PLY；完整推理由图片入口 `pipeline.demo` 或历史批次入口 `pipeline.window` 串联。1000帧13窗队列见[pipeline/gs_queue.py](../pipeline/gs_queue.py)，横移轨迹和展示见[visualization/](../visualization/README.md)。
 
 ## 保留的关键约定
 
@@ -34,10 +34,25 @@ ReSplat模型推理使用本库[原生入口](../tools/run_resplat_forward_windo
 3. **只替换曲面实际覆盖的道路。** 在静态道路整数像素调用`road.query_surface`，生成正camera-Z和`correction_mask`。曲面无支持处保留ReSplat初始化，它们仍可训练，不能称为全部语义道路冻结。初始化逐帧核对替换mask等于深度覆盖mask，拒绝误用整个语义道路mask。
 4. **原生PLY需要完整坐标转换。** ReSplat的16×128×240=491520行按源上下文分块；XYZ为pivot相对坐标，四元数为源相机局部方向。保持原float32相机归一化次序，同时转换协方差与SH3。保留world／centered渲染对照（PSNR>40dB、平均灰度差<.3），有原生视频时额外检查>28dB。
 5. **按源单元删除，不膨胀。** 动态mask的0表示忽略，覆盖mask的255表示新道路实际覆盖；INTER_AREA缩至240×128后只要源单元存在这类像素就删除对应ReSplat行，并保存原行号。天空mask只诊断，真实天空RGB继续监督。完整RoMa非道路点云没有作为本版背景输入。
-6. **两阶段背景训练，固定道路全部参数。** 默认每阶段每视角10步，即1000＋1000。RGB损失为`.8 masked_L1 + .2 (1-masked_SSIM)`，仅动态mask排除RGB。第一阶段逆深度权重`.5→.05`，第二阶段`.05`；XYZ学习率重置相对阶段进度，Adam状态连续。固定Pose/K、道路六组参数及点数，不增密、不剪枝。增加预算会同步延长阶段学习率与深度日程，不引入Loop背景生长分支。
-7. **完整恢复。** checkpoint含参数／Adam、spatial LR scale、剩余视图栈、Python／Torch／CUDA RNG、逐视图计数和累计时间。默认250步和阶段末保存；SIGTERM／SIGINT完成当前步后保存并返回75。恢复核对配置、输入／快照和代码哈希，跳过阶段前核对产物；最终道路PLY逐字段字节一致。
+6. **两阶段训练，默认固定道路全部参数。** 默认每阶段每视角10步，即1000＋1000。RGB损失为`.8 masked_L1 + .2 (1-masked_SSIM)`，仅动态mask排除RGB。第一阶段逆深度权重`.5→.05`，第二阶段`.05`；XYZ学习率重置相对阶段进度，Adam状态连续。固定Pose/K、道路六组参数及点数，不增密、不剪枝。增加预算会同步延长阶段学习率与深度日程，不引入Loop背景生长分支。
+7. **完整恢复。** checkpoint含参数／Adam、spatial LR scale、剩余视图栈、Python／Torch／CUDA RNG、逐视图计数和累计时间。默认250步和阶段末保存；SIGTERM／SIGINT完成当前步后保存并返回75。恢复核对配置、输入／快照和代码哈希，跳过阶段前核对产物；最终道路冻结字段逐位一致；全部冻结模式检查所有字段，外观训练模式检查位置／旋转／尺寸。
 
 ## 调用与输出
+
+### 可选：只放开道路外观（2026-10-28）
+
+在单窗GS配置中显式设置`"road_train_appearance": true`，并选用新的`output`目录，
+可训练补入道路的SH颜色与透明度。位置、旋转、尺寸仍逐位固定，保持既有RGB／逆深度损失、
+学习率及训练预算，不增密、不剪枝。缺省或`false`仍冻结全部六组参数。
+当前`pipeline.demo`的100张图片完整流程显式启用此设置。历史批处理入口和未指定此项的GS配置仍采用全部冻结，既有结果不改写。
+
+新模式的`training_report.json`要求`road_geometry_bit_exact=true`，并逐项记录PLY字段是否变化；
+颜色／透明度更新后`road_fields_bit_exact=false`是预期结果，不应再作为该模式失败的依据。
+checkpoint仅要求固定字段与初始化一致，可训练字段及Adam状态正常恢复。旧模型和旧输入清单不回写。
+
+首组100帧／2000步对照记录在本地`experiments/demo_road_appearance_20261028/README.md`：
+道路几何逐位不变，部分标线边缘更清楚，但道路训练视图平均L1由5.736升至5.845，
+尚不足以替换默认配置。该实验与旧demo模型分别保留。
 
 首次使用请按[Pipeline手册第3–4节](../pipeline/README.md#3-为单窗或13窗gs准备输入与完整配置)准备道路、原生ReSplat及完整配置，再运行队列。下方命令仅说明已有输入后的单阶段接口；不再要求从历史配置补齐字段。
 
@@ -83,3 +98,7 @@ OPENBLAS_NUM_THREADS=1 python -m unittest \
 - 原1832份源码快照哈希不变。未运行ReSplat推理、真实GS训练或视频渲染，旧队列未切换入口。
 
 运行仍依赖ReSplat环境中的`plyfile/gsplat`、Graphdeco环境中的CUDA扩展，以及外部 `gs_backend` 下的 `scene/gaussian_renderer/arguments/utils`。安装与外部路径配置见[根README](../README.md)。
+
+### 2026-10-28：可分发的外部后端补丁
+
+当前入口所需的外部后端修改已整理为两份补丁与固定版本／SHA256清单，包含`init_ply`、mask损失与读取、配套CUDA渲染接口及demo道路mask合并函数。克隆、编译和自检见[后端安装手册](../patches/GAUSSIAN_BACKEND.md)；验收记录见[验证JSON](../patches/gaussian-backend-validation.json)。旧工作区的实验版`train.py/render.py`不作为本库运行依赖。

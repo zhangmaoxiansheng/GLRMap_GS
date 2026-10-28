@@ -10,9 +10,54 @@ from ..io_utils import save_npz, sha, write_json
 from .cloud import plan as cloud_plan, matching_cache_sizes
 from . import gs_queue
 from . import window
+from .demo import demo_images, check_road_rendering
+from .. import runtime
 
 
 class PipelineContracts(unittest.TestCase):
+    def test_demo_requires_exactly_100_consecutive_native_images(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            for frame in range(3400, 3500):
+                (root/f'{frame:06d}.jpg').touch()
+            with patch('PIL.Image.open', return_value=SimpleNamespace(size=(666, 370))):
+                self.assertEqual(len(demo_images(root)), 100)
+                (root/'003450.jpg').rename(root/'003500.jpg')
+                with self.assertRaisesRegex(ValueError, 'consecutive'):
+                    demo_images(root)
+                (root/'003500.jpg').unlink()
+                with self.assertRaisesRegex(ValueError, 'exactly 100'):
+                    demo_images(root)
+
+    def test_demo_rejects_near_clipped_road_without_rescaling(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = root/'road_assets/road_depth_targets.npz'
+            path.parent.mkdir()
+            save_npz(path, depth=np.array([0., .3, .6]), correction_mask=[False, True, True])
+            check_road_rendering(root)
+            save_npz(path, depth=np.array([0., .1, .6]), correction_mask=[False, True, True])
+            before = sha(path)
+            with self.assertRaisesRegex(ValueError, 'incompatible with the pinned renderer'):
+                check_road_rendering(root)
+            self.assertEqual(sha(path), before)
+            audit = json.loads((root/'road_assets/renderer_audit.json').read_text())
+            self.assertFalse(audit['passed'])
+            self.assertEqual(audit['clipped_pixels'], 1)
+
+    def test_python_path_preserves_virtual_environment_symlink(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = root/'base/python'
+            base.parent.mkdir()
+            base.touch()
+            executable = root/'venv/bin/python'
+            executable.parent.mkdir(parents=True)
+            executable.symlink_to(base)
+            with patch.dict(runtime.PATHS, python_matching=str(executable)):
+                self.assertEqual(runtime.python_for('matching'), str(executable))
+                self.assertNotEqual(runtime.python_for('matching'), str(base))
+
     def test_window_pairs_keep_direct_neighbors_but_not_unrelated_pairs(self):
         with TemporaryDirectory() as directory:
             root = Path(directory)

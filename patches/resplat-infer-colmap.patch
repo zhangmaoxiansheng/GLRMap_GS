@@ -1,0 +1,13 @@
+diff --git a/scripts/infer_colmap.py b/scripts/infer_colmap.py
+index c44e00e..0858fba 100644
+--- a/scripts/infer_colmap.py
++++ b/scripts/infer_colmap.py
+@@ -806,7 +806,7 @@ def run_inference(encoder, decoder, batch, num_refine, render_chunk_size=10,
+         print(f"Running refinement ({num_refine} iterations)...")
+         refine_output = encoder.forward_update(
+             batch["context"],
+-            batch["target"],
++            None,  # target renders are produced in chunks after refinement
+             condition_features,
+             gaussians,
+             decoder,

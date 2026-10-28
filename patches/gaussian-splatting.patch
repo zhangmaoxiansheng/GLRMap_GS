@@ -1,0 +1,417 @@
+diff --git a/arguments/__init__.py b/arguments/__init__.py
+index 0b2f448d8fd3a563918485147e95f7e16352b162..1fe1fdedb20a959ee36fae23e052e76b73e2742b 100644
+--- a/arguments/__init__.py
++++ b/arguments/__init__.py
+@@ -77,7 +77,10 @@ class OptimizationParams(ParamGroup):
+         self.position_lr_init = 0.00016
+         self.position_lr_final = 0.0000016
+         self.position_lr_delay_mult = 0.01
+-        self.position_lr_max_steps = 30_000
++        # A non-positive value is resolved to the requested training iterations
++        # by train.py. This prevents short runs from silently inheriting the old
++        # fixed 30k position-LR schedule.
++        self.position_lr_max_steps = -1
+         self.feature_lr = 0.0025
+         self.opacity_lr = 0.025
+         self.scaling_lr = 0.005
+diff --git a/gaussian_renderer/__init__.py b/gaussian_renderer/__init__.py
+index e12f4b68037e4437feb670d7f8750b4846cca4cb..bde098e672caf3a32cc4a0bb06dd6c1fd3b8a644 100644
+--- a/gaussian_renderer/__init__.py
++++ b/gaussian_renderer/__init__.py
+@@ -88,7 +88,7 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor,
+ 
+     # Rasterize visible Gaussians to image, obtain their radii (on screen). 
+     if separate_sh:
+-        rendered_image, radii, depth_image = rasterizer(
++        rendered_image, radii, depth_image, mode_depth, mode_ids, mode_weights, accumulated_alpha = rasterizer(
+             means3D = means3D,
+             means2D = means2D,
+             dc = dc,
+@@ -99,7 +99,7 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor,
+             rotations = rotations,
+             cov3D_precomp = cov3D_precomp)
+     else:
+-        rendered_image, radii, depth_image = rasterizer(
++        rendered_image, radii, depth_image, mode_depth, mode_ids, mode_weights, accumulated_alpha = rasterizer(
+             means3D = means3D,
+             means2D = means2D,
+             shs = shs,
+@@ -122,7 +122,11 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor,
+         "viewspace_points": screenspace_points,
+         "visibility_filter" : (radii > 0).nonzero(),
+         "radii": radii,
+-        "depth" : depth_image
++        "depth" : depth_image,
++        "mode_depth": mode_depth,
++        "mode_ids": mode_ids,
++        "mode_weights": mode_weights,
++        "accumulated_alpha": accumulated_alpha,
+         }
+     
+     return out
+diff --git a/scene/__init__.py b/scene/__init__.py
+index 8091614091a80cbb1bb448d0104454b2deb88231..aa578a82476a0aebcbb7a25713316eb42e0d6fdd 100644
+--- a/scene/__init__.py
++++ b/scene/__init__.py
+@@ -22,7 +22,7 @@ class Scene:
+ 
+     gaussians : GaussianModel
+ 
+-    def __init__(self, args : ModelParams, gaussians : GaussianModel, load_iteration=None, shuffle=True, resolution_scales=[1.0]):
++    def __init__(self, args : ModelParams, gaussians : GaussianModel, load_iteration=None, shuffle=True, resolution_scales=[1.0], init_ply=None):
+         """b
+         :param path: Path to colmap scene main folder.
+         """
+@@ -30,6 +30,9 @@ class Scene:
+         self.loaded_iter = None
+         self.gaussians = gaussians
+ 
++        if load_iteration and init_ply:
++            raise ValueError("load_iteration and init_ply cannot be used together")
++
+         if load_iteration:
+             if load_iteration == -1:
+                 self.loaded_iter = searchForMaxIteration(os.path.join(self.model_path, "point_cloud"))
+@@ -79,6 +82,10 @@ class Scene:
+                                                            "point_cloud",
+                                                            "iteration_" + str(self.loaded_iter),
+                                                            "point_cloud.ply"), args.train_test_exp)
++        elif init_ply:
++            self.gaussians.load_ply_for_training(
++                init_ply, scene_info.train_cameras, self.cameras_extent
++            )
+         else:
+             self.gaussians.create_from_pcd(scene_info.point_cloud, scene_info.train_cameras, self.cameras_extent)
+ 
+diff --git a/scene/gaussian_model.py b/scene/gaussian_model.py
+index 473887db896b3eed76dce91a9a06e6510e7257c3..142e380c1865396055ad786cf87746350e498d40 100644
+--- a/scene/gaussian_model.py
++++ b/scene/gaussian_model.py
+@@ -313,6 +313,36 @@ class GaussianModel:
+ 
+         self.active_sh_degree = self.max_sh_degree
+ 
++    def load_ply_for_training(self, path, cam_infos, spatial_lr_scale):
++        """Load complete Gaussian parameters and initialize training-only state."""
++        self.load_ply(path, use_train_test_exp=False)
++        if not torch.isfinite(self._xyz).all():
++            raise ValueError("Initial Gaussian PLY contains non-finite positions: {}".format(path))
++        if not torch.isfinite(self._features_dc).all():
++            raise ValueError("Initial Gaussian PLY contains non-finite DC features: {}".format(path))
++        if not torch.isfinite(self._scaling).all():
++            raise ValueError("Initial Gaussian PLY contains non-finite scales: {}".format(path))
++        if not torch.isfinite(self._rotation).all():
++            raise ValueError("Initial Gaussian PLY contains non-finite rotations: {}".format(path))
++        if not torch.isfinite(self._opacity).all():
++            raise ValueError("Initial Gaussian PLY contains non-finite opacities: {}".format(path))
++
++        self.spatial_lr_scale = spatial_lr_scale
++        self.max_radii2D = torch.zeros((self.get_xyz.shape[0]), device="cuda")
++        self.exposure_mapping = {
++            cam_info.image_name: idx for idx, cam_info in enumerate(cam_infos)
++        }
++        self.pretrained_exposures = None
++        exposure = torch.eye(3, 4, device="cuda")[None].repeat(
++            len(cam_infos), 1, 1
++        )
++        self._exposure = nn.Parameter(exposure.requires_grad_(True))
++        print(
++            "Loaded {} complete Gaussians for optimization from {}".format(
++                self.get_xyz.shape[0], path
++            )
++        )
++
+     def replace_tensor_to_optimizer(self, tensor, name):
+         optimizable_tensors = {}
+         for group in self.optimizer.param_groups:
+@@ -361,7 +391,11 @@ class GaussianModel:
+ 
+         self.denom = self.denom[valid_points_mask]
+         self.max_radii2D = self.max_radii2D[valid_points_mask]
+-        self.tmp_radii = self.tmp_radii[valid_points_mask]
++        # tmp_radii exists only while the standard densify-and-prune routine is
++        # active. Final-only pruning (with densification disabled) has no such
++        # temporary tensor to keep in sync.
++        if hasattr(self, "tmp_radii") and self.tmp_radii is not None:
++            self.tmp_radii = self.tmp_radii[valid_points_mask]
+ 
+     def cat_tensors_to_optimizer(self, tensors_dict):
+         optimizable_tensors = {}
+diff --git a/utils/loss_utils.py b/utils/loss_utils.py
+index 60cf1f70c9ab15e6767dd566a29a464b7826c849..e176c8ffe3e5dd85e4a4973167df9d16da4fa367 100644
+--- a/utils/loss_utils.py
++++ b/utils/loss_utils.py
+@@ -43,6 +43,17 @@ def l1_loss(network_output, gt):
+ def l2_loss(network_output, gt):
+     return ((network_output - gt) ** 2).mean()
+ 
++def masked_l1_loss(network_output, gt, valid_mask, eps=1e-8):
++    """Mean absolute error over valid pixels only.
++
++    ``valid_mask`` is broadcast over color channels.  Dividing by the actual
++    valid sample count keeps the loss scale independent of masked area.
++    """
++    valid_mask = valid_mask.to(dtype=network_output.dtype)
++    weighted = torch.abs(network_output - gt) * valid_mask
++    denominator = valid_mask.sum() * network_output.shape[-3]
++    return weighted.sum() / denominator.clamp_min(eps)
++
+ def gaussian(window_size, sigma):
+     gauss = torch.Tensor([exp(-(x - window_size // 2) ** 2 / float(2 * sigma ** 2)) for x in range(window_size)])
+     return gauss / gauss.sum()
+@@ -85,6 +96,43 @@ def _ssim(img1, img2, window, window_size, channel, size_average=True):
+     else:
+         return ssim_map.mean(1).mean(1).mean(1)
+ 
++def masked_ssim(img1, img2, valid_mask, window_size=11, eps=1e-8):
++    """SSIM averaged only at valid pixel centers.
++
++    Invalid prediction pixels are replaced by detached ground truth before the
++    SSIM window is evaluated.  They therefore contribute neither direct error
++    nor gradient, while valid centers close to a mask boundary remain usable.
++    """
++    if img1.ndim == 3:
++        img1 = img1.unsqueeze(0)
++        img2 = img2.unsqueeze(0)
++    if valid_mask.ndim == 3:
++        valid_mask = valid_mask.unsqueeze(0)
++    valid_mask = valid_mask.to(device=img1.device, dtype=img1.dtype)
++    masked_img1 = img1 * valid_mask + img2.detach() * (1.0 - valid_mask)
++    channel = img1.size(1)
++    window = create_window(window_size, channel).to(device=img1.device, dtype=img1.dtype)
++
++    mu1 = F.conv2d(masked_img1, window, padding=window_size // 2, groups=channel)
++    mu2 = F.conv2d(img2, window, padding=window_size // 2, groups=channel)
++    mu1_sq = mu1.pow(2)
++    mu2_sq = mu2.pow(2)
++    mu1_mu2 = mu1 * mu2
++    sigma1_sq = F.conv2d(
++        masked_img1 * masked_img1, window, padding=window_size // 2, groups=channel
++    ) - mu1_sq
++    sigma2_sq = F.conv2d(
++        img2 * img2, window, padding=window_size // 2, groups=channel
++    ) - mu2_sq
++    sigma12 = F.conv2d(
++        masked_img1 * img2, window, padding=window_size // 2, groups=channel
++    ) - mu1_mu2
++    ssim_map = ((2 * mu1_mu2 + C1) * (2 * sigma12 + C2)) / (
++        (mu1_sq + mu2_sq + C1) * (sigma1_sq + sigma2_sq + C2)
++    )
++    ssim_per_pixel = ssim_map.mean(dim=1, keepdim=True)
++    return (ssim_per_pixel * valid_mask).sum() / valid_mask.sum().clamp_min(eps)
++
+ 
+ def fast_ssim(img1, img2):
+     ssim_map = FusedSSIMMap.apply(C1, C2, img1, img2)
+diff --git a/utils/sky_mask_utils.py b/utils/sky_mask_utils.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..859f45067d984eebc5cfdc04933348b51244cec5
+--- /dev/null
++++ b/utils/sky_mask_utils.py
+@@ -0,0 +1,53 @@
++"""Optional per-image valid-pixel masks for 3DGS supervision."""
++
++from pathlib import Path
++
++import cv2
++import numpy as np
++import torch
++import torch.nn.functional as F
++
++
++class ValidMaskSupervisor:
++    """Load valid-pixel masks named after COLMAP images.
++
++    The repository convention is ``255=valid/supervised`` and
++    ``0=invalid/ignored``.  Sky and dynamic-object masking share this storage
++    convention even though their loss behavior is different.
++    """
++
++    def __init__(self, mask_dir):
++        self.path = Path(mask_dir).expanduser().resolve()
++        if not self.path.is_dir():
++            raise FileNotFoundError(f"Mask directory does not exist: {self.path}")
++        self.masks = {}
++        for path in sorted(self.path.glob("*.png")):
++            mask = cv2.imread(str(path), cv2.IMREAD_GRAYSCALE)
++            if mask is None:
++                raise ValueError(f"Unable to read mask: {path}")
++            self.masks[path.stem] = mask.astype(np.float32) / 255.0
++        if not self.masks:
++            raise ValueError(f"No PNG masks found in {self.path}")
++        self.valid_fraction = float(
++            sum(float(mask.sum()) for mask in self.masks.values())
++            / sum(mask.size for mask in self.masks.values())
++        )
++
++    def _mask_for_camera(self, camera):
++        name = Path(str(camera.image_name)).stem
++        if name not in self.masks:
++            raise KeyError(f"Camera {camera.image_name!r} has no mask in {self.path}")
++        return self.masks[name]
++
++    def target_for(self, camera, device="cuda"):
++        mask = torch.from_numpy(self._mask_for_camera(camera))[None, None].to(device)
++        return F.interpolate(
++            mask,
++            size=(camera.image_height, camera.image_width),
++            mode="bilinear",
++            align_corners=False,
++        )[0].clamp(0, 1)
++
++
++# Backward-compatible name used by the existing sky pipeline.
++SkyMaskSupervisor = ValidMaskSupervisor
+diff --git a/complete_sanhuan_sam31_road_masks.py b/complete_sanhuan_sam31_road_masks.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..4506b730c8f981274db1b83de4d4813b6d42a399
+--- /dev/null
++++ b/complete_sanhuan_sam31_road_masks.py
+@@ -0,0 +1,147 @@
++#!/usr/bin/env python3
++"""SAM3.1 road + nearby lane paint; audit all frames without changing geometry.
++
++Hough-derived paint candidates are used ONLY to assess coverage, never to
++create masks. Coverage statistics are not a ground-truth segmentation score.
++"""
++import argparse
++import hashlib
++import json
++from pathlib import Path
++
++import cv2
++import numpy as np
++from scipy.ndimage import binary_fill_holes
++
++
++def main_component(mask):
++    count, labels, stats, _ = cv2.connectedComponentsWithStats(mask.astype(np.uint8), 8)
++    if count < 2:
++        raise ValueError("No road component")
++    return labels == (1 + np.argmax(stats[1:, cv2.CC_STAT_AREA]))
++
++
++def merge_masks(road, lane, valid, maximum_gap=16):
++    # Main carriageway only: disconnected sidewalk/side-road detections do not
++    # establish road planes. Existing vehicle exclusions remain authoritative.
++    main = main_component(road & valid)
++    distance = cv2.distanceTransform((~main).astype(np.uint8), cv2.DIST_L2, 5)
++    nearby_lane = lane & (distance <= maximum_gap) & valid
++    combined = main | nearby_lane
++    # Join the small segmentation gap between the observed edge paint and road.
++    # No extrapolation of a line, no dilation beyond actual SAM paint pixels.
++    h, w = road.shape
++    yy, xx = np.indices(road.shape)
++    present = main.any(axis=0)
++    old_top = np.argmax(main, axis=0)
++    boundary_paint = nearby_lane & (xx < .48*w) & (yy > .58*h)
++    boundary_paint &= (yy < old_top[None]) & (old_top[None]-yy <= maximum_gap)
++    columns = boundary_paint.any(axis=0) & present
++    paint_top = np.argmax(boundary_paint, axis=0)
++    gap = columns[None] & (yy >= paint_top[None]) & (yy < old_top[None])
++    combined |= gap & valid
++    combined = binary_fill_holes(combined) & valid
++    if np.any(combined & ~valid):
++        raise RuntimeError("Vehicle pixels leaked into road mask")
++    return combined, dict(sam_main_road_pixels=int(main.sum()),
++                          accepted_lane_pixels=int(nearby_lane.sum()),
++                          lane_pixels_outside_main_road=int((nearby_lane & ~main).sum()),
++                          joined_gap_pixels=int((gap & valid & ~road & ~lane).sum()),
++                          discarded_disconnected_road_pixels=int((road & valid & ~main).sum()))
++
++
++def paint_candidates(rgb, record):
++    h, w = rgb.shape[:2]
++    yy, xx = np.indices((h, w))
++    line = record["line_slope"]*xx+record["line_intercept"]
++    low = rgb.min(axis=2)
++    chroma = rgb.max(axis=2).astype(int)-low
++    return ((abs(yy-line) <= 2) & (xx < .44*w) & (yy > .60*h)
++            & (low > 140) & (chroma < 40))
++
++
++def overlay(rgb, mask):
++    result = rgb.copy()
++    result[mask] = .68*rgb[mask]+.32*np.array([0, 255, 0])
++    # Outline improves visibility of excluded paint without covering its color.
++    contours, _ = cv2.findContours(mask.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
++    cv2.drawContours(result, contours, -1, (0, 255, 255), 1)
++    return result
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--images", type=Path, required=True)
++    parser.add_argument("--old-masks", type=Path, required=True)
++    parser.add_argument("--road-masks", type=Path, required=True)
++    parser.add_argument("--lane-masks", type=Path, required=True)
++    parser.add_argument("--vehicle-valid", type=Path, required=True)
++    parser.add_argument("--paint-reference", type=Path, required=True)
++    parser.add_argument("--output", type=Path, required=True)
++    args = parser.parse_args()
++    if args.output.exists():
++        raise FileExistsError(args.output)
++    references = {r["image"]: r for r in json.loads(args.paint_reference.read_text())["records"]}
++    paths = sorted(args.images.glob("*.jpg"))
++    if len(paths) != 100:
++        raise ValueError("Expected the unchanged 100-frame sanhuan sequence")
++    results, records, previews, zooms, inputs = [], [], [], [], {}
++    for index, path in enumerate(paths):
++        rgb = cv2.cvtColor(cv2.imread(str(path)), cv2.COLOR_BGR2RGB)
++        masks = []
++        for directory in (args.old_masks, args.road_masks, args.lane_masks, args.vehicle_valid):
++            mask_path = directory/f"{path.stem}.png"
++            mask = cv2.imread(str(mask_path), 0)
++            if mask is None or mask.shape != rgb.shape[:2]:
++                raise ValueError(f"Missing or misaligned mask: {mask_path}")
++            inputs[str(mask_path.resolve())] = hashlib.sha256(mask_path.read_bytes()).hexdigest()
++            masks.append(mask > 128)
++        old, road, lane, valid = masks
++        final, details = merge_masks(road, lane, valid)
++        candidate = paint_candidates(rgb, references[path.name]) & valid
++        n = int(candidate.sum())
++        cover = {label: int((candidate & mask).sum()) for label, mask in
++                 (("old", old), ("road_no_erosion", road & valid), ("sam_lane", lane & valid), ("final", final))}
++        record = dict(image=path.name, index=index, candidate_pixels=n, covered_candidate_pixels=cover,
++                      final_candidate_coverage=cover["final"]/n if n else None,
++                      final_pixels=int(final.sum()), vehicle_leak_pixels=int((final & ~valid).sum()), **details)
++        records.append(record)
++        results.append((path.stem, final))
++        if index in (0, 15, 35, 50, 75, 90, 99):
++            panels = [rgb.copy(), overlay(rgb, old), overlay(rgb, final)]
++            for panel, label in zip(panels, (f"SOURCE FRAME {index}", "EXP15 OLD ROAD MASK", "EXP35 SAM3.1 ROAD + PAINT")):
++                cv2.putText(panel, label, (8, 24), cv2.FONT_HERSHEY_SIMPLEX, .6, (255, 255, 255), 2)
++            previews.append(np.concatenate(panels, axis=1))
++            zooms.append(np.concatenate([cv2.resize(p[235:350, :290], (580, 230)) for p in panels], axis=1))
++    args.output.mkdir(parents=True)
++    for stem, mask in results:
++        if not cv2.imwrite(str(args.output/f"{stem}.png"), mask.astype(np.uint8)*255):
++            raise IOError(stem)
++    preview = args.output/"road_mask_check.jpg"
++    zoom = args.output/"left_boundary_check.jpg"
++    cv2.imwrite(str(preview), cv2.cvtColor(np.concatenate(previews), cv2.COLOR_RGB2BGR))
++    cv2.imwrite(str(zoom), cv2.cvtColor(np.concatenate(zooms), cv2.COLOR_RGB2BGR))
++    sums = {label: sum(r["covered_candidate_pixels"][label] for r in records)
++            for label in ("old", "road_no_erosion", "sam_lane", "final")}
++    total = sum(r["candidate_pixels"] for r in records)
++    flagged = [r["index"] for r in records if r["final_candidate_coverage"] is None or r["final_candidate_coverage"] < .98]
++    summary = dict(image_count=len(paths), image_resolution_wh=list(rgb.shape[:2][::-1]),
++                   candidate_pixels=total, aggregate_candidate_coverage={k: v/total for k, v in sums.items()},
++                   minimum_frame_candidate_coverage=min(r["final_candidate_coverage"] for r in records if r["candidate_pixels"]),
++                   frames_below_98_percent=flagged, vehicle_leak_pixels=sum(r["vehicle_leak_pixels"] for r in records))
++    report = dict(method="sam31_uneroded_main_carriageway_plus_nearby_observed_lane_markings",
++                  summary=summary, records=records, mask_sha256=inputs,
++                  maximum_lane_gap_rgb_pixels=16, no_hough_mask_generation=True,
++                  no_gaussian_or_camera_changes=True,
++                  mask_convention="255=static main-carriageway road including lane paint; 0=other/vehicle",
++                  limitations=["Candidate coverage is an image-based check, NOT annotated segmentation IoU or proof of all road coverage.",
++                               "Main road and lane boundaries require visual checking; small SAM paint-edge errors can remain.",
++                               "Disconnected side roads are intentionally excluded, not silently flattened as the main carriageway."],
++                  raw_road_metadata=json.loads((args.road_masks/"metadata.json").read_text()),
++                  raw_lane_metadata=json.loads((args.lane_masks/"metadata.json").read_text()))
++    (args.output/"mask_completeness_report.json").write_text(json.dumps(report, indent=2)+"\n")
++    print(json.dumps(summary, indent=2), flush=True)
++
++
++if __name__ == "__main__":
++    main()

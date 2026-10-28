@@ -1,0 +1,25 @@
+{
+  "output": "experiments/demo_sanhuan_350s360s",
+  "first_frame": 3400,
+  "stop_frame": 3500,
+  "fps": 10,
+  "images": "demo/input/images",
+  "cameras": "demo/input/cameras.npz",
+  "reference_cameras": "demo/input/road/reference_cameras.npz",
+  "resplat_ply": "demo/input/resplat/native.ply",
+  "resplat_video": "demo/input/resplat/native.mp4",
+  "road_ply": "demo/input/road/gaussians.ply",
+  "road_constraints": "demo/input/road/constraints.npz",
+  "road_depth": "demo/input/road/depth.npz",
+  "road_masks": "demo/input/masks/road_covered",
+  "dynamic_masks": "demo/input/masks/static_valid",
+  "sky_diagnostic_masks": "demo/input/masks/sky_foreground",
+  "steps_per_view_per_phase": 10,
+  "checkpoint_every": 1000,
+  "lateral_anchors": [
+    30,
+    60,
+    85
+  ],
+  "lateral_amplitude_world": 0.06891966864338281
+}

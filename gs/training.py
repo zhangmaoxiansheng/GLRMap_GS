@@ -1,4 +1,4 @@
-"""Two-phase background fitting with bit-exact fixed road and full optimizer/RNG recovery."""
+"""Two-phase fitting with fixed road geometry and optional road appearance training."""
 import argparse
 from collections import Counter
 import json
@@ -6,7 +6,7 @@ from pathlib import Path
 import random
 import signal
 import time
-from .state import FIELDS, gpu, verify, write
+from .state import FIELDS, gpu, verify, write, road_frozen_fields
 from ..io_utils import sha
 
 
@@ -27,6 +27,7 @@ def train(c,fingerprint,stop_after=None):
     from utils.loss_utils import masked_l1_loss,masked_ssim
     from utils.sky_mask_utils import ValidMaskSupervisor
     out=Path(c['output']);m=verify(out,c,fingerprint);n=m['views'];phase_steps=m['phase_steps'];total=phase_steps*2
+    frozen=road_frozen_fields(c)
     if (out/'training_report.json').exists():
         r=json.loads((out/'training_report.json').read_text());assert sha(r['final_PLY'])==r['final_sha256'];return
     path=out/'trained';path.mkdir(exist_ok=True)
@@ -36,7 +37,8 @@ def train(c,fingerprint,stop_after=None):
     dataset,options,pipeline=lp.extract(args),op.extract(args),pp.extract(args)
     (path/'cfg_args').write_text(str(argparse.Namespace(**vars(dataset))))
     write(out/'training_config.json',dict(**vars(args),phase_steps=phase_steps,RGB_mask='dynamic only; sky included',
-        road_freeze='all6 tensors',phase_optimizer_state='continuous',depth_schedule=[['exponential',.5,.05],['constant',.05]]))
+        road_frozen_fields=frozen,road_trainable_fields=[k for k in FIELDS if k not in frozen],
+        phase_optimizer_state='continuous',depth_schedule=[['exponential',.5,.05],['constant',.05]]))
     interrupted=[False]
     def stop(signum,frame):interrupted[0]=True
     signal.signal(signal.SIGTERM,stop);signal.signal(signal.SIGINT,stop)
@@ -51,7 +53,7 @@ def train(c,fingerprint,stop_after=None):
         model.training_setup(options);cams=scene.getTrainCameras();assert len(cams)==n
         cam_lookup={cam.image_name:cam for cam in cams}
         with np.load(out/'initialization_lineage.npz') as z:start=int(z['road_start']);count=int(z['total_count'])
-        pinned={k:getattr(model,k)[start:].detach().clone() for k in FIELDS}
+        pinned={k:getattr(model,k)[start:].detach().clone() for k in frozen}
         counts=Counter();phase_counts=[Counter(),Counter()];stack=[];begin=1;losses=[];previous_seconds=0.;resumed_from=0
         checkpoint=out/'checkpoint_latest.pt'
         if checkpoint.exists():
@@ -94,12 +96,12 @@ def train(c,fingerprint,stop_after=None):
             loss=rgb+weight*depth
             if not torch.isfinite(loss):raise ValueError('Nonfinite loss')
             loss.backward()
-            for k in FIELDS:
+            for k in frozen:
                 p=getattr(model,k)
                 if p.grad is not None:p.grad[start:].zero_()
             model.optimizer.step();model.optimizer.zero_grad(set_to_none=True)
             with torch.no_grad():
-                for k in FIELDS:getattr(model,k)[start:].copy_(pinned[k])
+                for k in frozen:getattr(model,k)[start:].copy_(pinned[k])
             counts[cam.image_name]+=1;phase_counts[phase][cam.image_name]+=1
             if iteration%100==0:
                 item=dict(iteration=iteration,RGB=float(rgb),road_inverse_depth=float(depth),depth_weight=float(weight));losses.append(item)
@@ -116,9 +118,17 @@ def train(c,fingerprint,stop_after=None):
         if not final.exists():scene.save(total)
         original=PlyData.read(out/'static_road_init.ply',mmap='r')['vertex'].data
         saved=PlyData.read(final,mmap='r')['vertex'].data
-        assert len(saved)==count and all(saved[k][start:].tobytes()==original[k][start:].tobytes() for k in original.dtype.names)
+        assert len(saved)==count
+        unchanged={k:saved[k][start:].tobytes()==original[k][start:].tobytes() for k in original.dtype.names}
+        geometry=[k for k in original.dtype.names if k in ('x','y','z','nx','ny','nz') or k.startswith(('scale_','rot_'))]
+        geometry_exact=all(unchanged[k] for k in geometry)
+        assert geometry_exact
+        if not c.get('road_train_appearance',False):assert all(unchanged.values())
         assert all(len(x)==n and set(x.values())=={c['steps_per_view_per_phase']} for x in phase_counts)
         write(out/'training_report.json',dict(complete=True,iterations=total,updates=total,views=n,Gaussian_count=count,
-            road_count=count-start,road_fields_bit_exact=True,RGB_view_counts=dict(counts),phase_counts=[dict(x) for x in phase_counts],
+            road_count=count-start,road_fields_bit_exact=all(unchanged.values()),road_geometry_bit_exact=geometry_exact,
+            road_PLY_fields_bit_exact=unchanged,road_frozen_fields=frozen,
+            road_trainable_fields=[k for k in FIELDS if k not in frozen],
+            RGB_view_counts=dict(counts),phase_counts=[dict(x) for x in phase_counts],
             elapsed_seconds=previous_seconds+time.monotonic()-started,resumed_from=resumed_from,
             peak_GPU_GiB=torch.cuda.max_memory_allocated()/2**30,final_PLY=str(final),final_sha256=sha(final),losses=losses))

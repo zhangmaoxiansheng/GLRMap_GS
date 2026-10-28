@@ -3,7 +3,7 @@ from pathlib import Path
 import shutil
 import cv2
 import numpy as np
-from .state import ROOT, GS_ROOT, cameras, code_files, gpu, verify, write
+from .state import ROOT, GS_ROOT, cameras, code_files, gpu, verify, write, road_frozen_fields
 from ..io_utils import sha
 
 
@@ -148,7 +148,7 @@ def prepare(c,fingerprint):
         raise ValueError('GS inputs changed while preparing initialization')
     write(out/'input_manifest.json',dict(config_fingerprint=fingerprint,source_hashes=source_hashes,snapshot_hashes=snapshots,
         code_hashes={str(p):sha(p) for p in files},width=w,height=h,views=n,phase_steps=n*c['steps_per_view_per_phase'],
-        real_sky_RGB_supervised=True,road_depth='RoMa fitted surface support only',road_freeze='all6 tensors',
+        real_sky_RGB_supervised=True,road_depth='RoMa fitted surface support only',road_frozen_fields=road_frozen_fields(c),
         Gaussian_densification=False,Gaussian_pruning=False))
     for p in files:
         relative=Path('GLRMap_GS')/p.relative_to(ROOT) if ROOT in p.parents else Path('gs_backend')/p.relative_to(GS_ROOT)

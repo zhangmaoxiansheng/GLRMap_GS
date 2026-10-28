@@ -1,0 +1,45 @@
+{
+  "schema_version": 4,
+  "example": "sanhuan_350s360s_100_images",
+  "scene_input": "100 RGB JPEGs only",
+  "sfm_image_count": 100,
+  "training_image_count": 100,
+  "first_frame": 3400,
+  "stop_frame_exclusive": 3500,
+  "sky_segmentation": false,
+  "coordinate_normalization": false,
+  "imported_calibration": false,
+  "imported_pose_anchors": false,
+  "road_train_appearance": true,
+  "road_frozen_fields": [
+    "xyz",
+    "rotation",
+    "scale"
+  ],
+  "training_steps": 2000,
+  "reference_result": "result_100_images",
+  "input_checksum": "IMAGES_SHA256SUMS",
+  "verified_current_pipeline": true,
+  "visual_quality_accepted": false,
+  "input_archive": {
+    "name": "demo-images-v4.zip",
+    "bytes": 6301634,
+    "sha256": "6693f7995cd37c51d43af7c5bb2544564772619b6dcbf6d0ca73edfba7090e75",
+    "uploaded": false
+  },
+  "verification": "result_100_images/summary.json",
+  "Gaussian_count": 1305705,
+  "full_cloud_count": 1601201,
+  "final_GS_sha256": "5eed333af60ad33aa2687507d01105ba8f102c00ec10f94910718fde589180e3",
+  "road_geometry_bit_exact": true,
+  "near_clipped_supervised_pixels": 0,
+  "unit_checks_passed": 92,
+  "result_archive": {
+    "name": "demo-results-v4.zip",
+    "bytes": 333762610,
+    "sha256": "087732a5611918181d2e4926c492411d940f590bd82bec34d3b468e0e56cd9ca",
+    "files": 121,
+    "archive_and_file_hashes_verified": true,
+    "uploaded": false
+  }
+}

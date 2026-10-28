@@ -1,0 +1,275 @@
+diff --git a/cuda_rasterizer/forward.cu b/cuda_rasterizer/forward.cu
+index c5e01ddc475c88f41c4368894330851aa3acc67e..1294bcfab4b2f4b806a7955661daf9dfd0e55f61 100644
+--- a/cuda_rasterizer/forward.cu
++++ b/cuda_rasterizer/forward.cu
+@@ -285,7 +285,11 @@ renderCUDA(
+ 	const float* __restrict__ bg_color,
+ 	float* __restrict__ out_color,
+ 	const float* __restrict__ depths,
+-	float* __restrict__ invdepth)
++	float* __restrict__ invdepth,
++	float* __restrict__ mode_invdepth,
++	int* __restrict__ mode_id,
++	float* __restrict__ mode_weight,
++	float* __restrict__ accumulated_alpha)
+ {
+ 	// Identify current tile and associated min/max pixel range.
+ 	auto block = cg::this_thread_block();
+@@ -318,6 +322,9 @@ renderCUDA(
+ 	float C[CHANNELS] = { 0 };
+ 
+ 	float expected_invdepth = 0.0f;
++	float strongest_weight = 0.0f;
++	float strongest_invdepth = 0.0f;
++	int strongest_id = -1;
+ 
+ 	// Iterate over batches until all done or range is complete
+ 	for (int i = 0; i < rounds; i++, toDo -= BLOCK_SIZE)
+@@ -374,6 +381,16 @@ renderCUDA(
+ 			if(invdepth)
+ 			expected_invdepth += (1 / depths[collected_id[j]]) * alpha * T;
+ 
++			// SparseGS-style mode selection: retain the Gaussian with the
++			// largest actual alpha-compositing contribution w_i = alpha_i T_i.
++			const float contribution_weight = alpha * T;
++			if (contribution_weight > strongest_weight)
++			{
++				strongest_weight = contribution_weight;
++				strongest_invdepth = 1.0f / depths[collected_id[j]];
++				strongest_id = collected_id[j];
++			}
++
+ 			T = test_T;
+ 
+ 			// Keep track of last range entry to update this
+@@ -393,6 +410,14 @@ renderCUDA(
+ 
+ 		if (invdepth)
+ 		invdepth[pix_id] = expected_invdepth;// 1. / (expected_depth + T * 1e3);
++		if (mode_invdepth)
++			mode_invdepth[pix_id] = strongest_invdepth;
++		if (mode_id)
++			mode_id[pix_id] = strongest_id;
++		if (mode_weight)
++			mode_weight[pix_id] = strongest_weight;
++		if (accumulated_alpha)
++			accumulated_alpha[pix_id] = 1.0f - T;
+ 	}
+ }
+ 
+@@ -409,7 +434,11 @@ void FORWARD::render(
+ 	const float* bg_color,
+ 	float* out_color,
+ 	float* depths,
+-	float* depth)
++	float* depth,
++	float* mode_invdepth,
++	int* mode_id,
++	float* mode_weight,
++	float* accumulated_alpha)
+ {
+ 	renderCUDA<NUM_CHANNELS> << <grid, block >> > (
+ 		ranges,
+@@ -423,7 +452,11 @@ void FORWARD::render(
+ 		bg_color,
+ 		out_color,
+ 		depths, 
+-		depth);
++		depth,
++		mode_invdepth,
++		mode_id,
++		mode_weight,
++		accumulated_alpha);
+ }
+ 
+ void FORWARD::preprocess(int P, int D, int M,
+diff --git a/cuda_rasterizer/forward.h b/cuda_rasterizer/forward.h
+index 5b18005f73e0c78d4444fac676a93da3ba21753a..eb4e3b5ea14e52768040d7c1d1ec70c9f7a09413 100644
+--- a/cuda_rasterizer/forward.h
++++ b/cuda_rasterizer/forward.h
+@@ -62,7 +62,11 @@ namespace FORWARD
+ 		const float* bg_color,
+ 		float* out_color,
+ 		float* depths,
+-		float* depth);
++		float* depth,
++		float* mode_invdepth,
++		int* mode_id,
++		float* mode_weight,
++		float* accumulated_alpha);
+ }
+ 
+ 
+diff --git a/cuda_rasterizer/rasterizer.h b/cuda_rasterizer/rasterizer.h
+index 64afdee905d2f6c45d71d3f9f168b25d1844a581..2c30814a1f2dc448608c97196867022a5c9d9358 100644
+--- a/cuda_rasterizer/rasterizer.h
++++ b/cuda_rasterizer/rasterizer.h
+@@ -50,6 +50,10 @@ namespace CudaRasterizer
+ 			const bool prefiltered,
+ 			float* out_color,
+ 			float* depth,
++			float* mode_invdepth,
++			int* mode_id,
++			float* mode_weight,
++			float* accumulated_alpha,
+ 			bool antialiasing,
+ 			int* radii = nullptr,
+ 			bool debug = false);
+diff --git a/cuda_rasterizer/rasterizer_impl.cu b/cuda_rasterizer/rasterizer_impl.cu
+index 41c4ed3a433d260770732b8e0e7a43f2d995aa61..6adab62d1c2fc5df689c3c885f5b7abc5771d01f 100644
+--- a/cuda_rasterizer/rasterizer_impl.cu
++++ b/cuda_rasterizer/rasterizer_impl.cu
+@@ -217,6 +217,10 @@ int CudaRasterizer::Rasterizer::forward(
+ 	const bool prefiltered,
+ 	float* out_color,
+ 	float* depth,
++	float* mode_invdepth,
++	int* mode_id,
++	float* mode_weight,
++	float* accumulated_alpha,
+ 	bool antialiasing,
+ 	int* radii,
+ 	bool debug)
+@@ -335,7 +339,11 @@ int CudaRasterizer::Rasterizer::forward(
+ 		background,
+ 		out_color,
+ 		geomState.depths,
+-		depth), debug)
++		depth,
++		mode_invdepth,
++		mode_id,
++		mode_weight,
++		accumulated_alpha), debug)
+ 
+ 	return num_rendered;
+ }
+diff --git a/diff_gaussian_rasterization/__init__.py b/diff_gaussian_rasterization/__init__.py
+index 7f228cec5e753f9d20d958172938a799eb588a18..6fc0f60886aa6239c67c7d66dd00d09360d47022 100644
+--- a/diff_gaussian_rasterization/__init__.py
++++ b/diff_gaussian_rasterization/__init__.py
+@@ -81,16 +81,48 @@ class _RasterizeGaussians(torch.autograd.Function):
+         )
+ 
+         # Invoke C++/CUDA rasterizer
+-        num_rendered, color, radii, geomBuffer, binningBuffer, imgBuffer, invdepths = _C.rasterize_gaussians(*args)
++        (
++            num_rendered,
++            color,
++            radii,
++            geomBuffer,
++            binningBuffer,
++            imgBuffer,
++            invdepths,
++            mode_invdepths,
++            mode_ids,
++            mode_weights,
++            accumulated_alpha,
++        ) = _C.rasterize_gaussians(*args)
+ 
+         # Keep relevant tensors for backward
+         ctx.raster_settings = raster_settings
+         ctx.num_rendered = num_rendered
+         ctx.save_for_backward(colors_precomp, means3D, scales, rotations, cov3Ds_precomp, radii, sh, opacities, geomBuffer, binningBuffer, imgBuffer)
+-        return color, radii, invdepths
++        ctx.mark_non_differentiable(
++            mode_invdepths, mode_ids, mode_weights, accumulated_alpha
++        )
++        return (
++            color,
++            radii,
++            invdepths,
++            mode_invdepths,
++            mode_ids,
++            mode_weights,
++            accumulated_alpha,
++        )
+ 
+     @staticmethod
+-    def backward(ctx, grad_out_color, _, grad_out_depth):
++    def backward(
++        ctx,
++        grad_out_color,
++        _,
++        grad_out_depth,
++        _grad_out_mode_depth,
++        _grad_out_mode_ids,
++        _grad_out_mode_weights,
++        _grad_out_accumulated_alpha,
++    ):
+ 
+         # Restore necessary values from context
+         num_rendered = ctx.num_rendered
+@@ -205,4 +237,3 @@ class GaussianRasterizer(nn.Module):
+             cov3D_precomp,
+             raster_settings, 
+         )
+-
+diff --git a/ext.cpp b/ext.cpp
+index d768779579761238347972a973fbd1603d44235e..2c4a771d6d7695b26da5120812884a0f2862f6d3 100644
+--- a/ext.cpp
++++ b/ext.cpp
+@@ -16,4 +16,4 @@ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
+   m.def("rasterize_gaussians", &RasterizeGaussiansCUDA);
+   m.def("rasterize_gaussians_backward", &RasterizeGaussiansBackwardCUDA);
+   m.def("mark_visible", &markVisible);
+-}
+\ No newline at end of file
++}
+diff --git a/rasterize_points.cu b/rasterize_points.cu
+index e625c19e465b62deeeb7505b9d95b5543137c497..4ca523fde9e20fa7fc3b0b17988b32fd4749840b 100644
+--- a/rasterize_points.cu
++++ b/rasterize_points.cu
+@@ -32,7 +32,7 @@ std::function<char*(size_t N)> resizeFunctional(torch::Tensor& t) {
+     return lambda;
+ }
+ 
+-std::tuple<int, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>
++std::tuple<int, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>
+ RasterizeGaussiansCUDA(
+ 	const torch::Tensor& background,
+ 	const torch::Tensor& means3D,
+@@ -73,6 +73,11 @@ RasterizeGaussiansCUDA(
+   out_invdepth = torch::full({1, H, W}, 0.0, float_opts).contiguous();
+   out_invdepthptr = out_invdepth.data<float>();
+ 
++  torch::Tensor out_mode_invdepth = torch::full({1, H, W}, 0.0, float_opts).contiguous();
++  torch::Tensor out_mode_id = torch::full({1, H, W}, -1, int_opts).contiguous();
++  torch::Tensor out_mode_weight = torch::full({1, H, W}, 0.0, float_opts).contiguous();
++  torch::Tensor out_accumulated_alpha = torch::full({1, H, W}, 0.0, float_opts).contiguous();
++
+   torch::Tensor radii = torch::full({P}, 0, means3D.options().dtype(torch::kInt32));
+   
+   torch::Device device(torch::kCUDA);
+@@ -116,11 +121,18 @@ RasterizeGaussiansCUDA(
+ 		prefiltered,
+ 		out_color.contiguous().data<float>(),
+ 		out_invdepthptr,
++		out_mode_invdepth.contiguous().data<float>(),
++		out_mode_id.contiguous().data<int>(),
++		out_mode_weight.contiguous().data<float>(),
++		out_accumulated_alpha.contiguous().data<float>(),
+ 		antialiasing,
+ 		radii.contiguous().data<int>(),
+ 		debug);
+   }
+-  return std::make_tuple(rendered, out_color, radii, geomBuffer, binningBuffer, imgBuffer, out_invdepth);
++  return std::make_tuple(
++	  rendered, out_color, radii, geomBuffer, binningBuffer, imgBuffer,
++	  out_invdepth, out_mode_invdepth, out_mode_id, out_mode_weight,
++	  out_accumulated_alpha);
+ }
+ 
+ std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>
+diff --git a/rasterize_points.h b/rasterize_points.h
+index 82cbd4f2cbbcd97af3164482f5fa455c9b9581a5..06b4d32aed33c1cbcf64737879cf06b58040c0f3 100644
+--- a/rasterize_points.h
++++ b/rasterize_points.h
+@@ -15,7 +15,7 @@
+ #include <tuple>
+ #include <string>
+ 	
+-std::tuple<int, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>
++std::tuple<int, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>
+ RasterizeGaussiansCUDA(
+ 	const torch::Tensor& background,
+ 	const torch::Tensor& means3D,

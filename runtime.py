@@ -22,4 +22,7 @@ GPU_LOCK = path('gpu_lock', ROOT/'cache/gpu.lock')
 
 
 def python_for(name):
-    return str(path('python_'+name, Path.home()/'miniconda3/envs'/name/'bin/python'))
+    # Resolving a venv's interpreter symlink launches its base environment and
+    # loses that venv's site-packages. Preserve the configured executable path.
+    executable = Path(PATHS.get('python_'+name, Path.home()/'miniconda3/envs'/name/'bin/python')).expanduser()
+    return str((ROOT/executable).absolute())

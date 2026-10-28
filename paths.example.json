@@ -5,11 +5,15 @@
   "dinov3_source": "/opt/projects/dinov3",
   "sparse_weights": "~/.cache/torch/hub/checkpoints",
   "resplat": "/opt/projects/resplat",
+  "resplat_checkpoint": "/opt/projects/resplat/pretrained/resplat-base-dl3dv-540x960-view16-a72dc6d0.pth",
   "colmap": "/usr/local/bin/colmap",
   "glomap": "/opt/projects/glomap/build/glomap/glomap",
   "python_sfm": "/opt/envs/sfm/bin/python",
   "python_matching": "/opt/envs/roma/bin/python",
   "python_resplat": "/opt/envs/resplat/bin/python",
   "python_gs": "/opt/envs/gs/bin/python",
-  "gpu_lock": "cache/gpu.lock"
+  "gpu_lock": "cache/gpu.lock",
+  "sam3_source": "/opt/projects/sam3",
+  "sam3_checkpoint": "/opt/models/sam3.1_multiplex.pt",
+  "python_sam": "/opt/envs/sam3/bin/python"
 }

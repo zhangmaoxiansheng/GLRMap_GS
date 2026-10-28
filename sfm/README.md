@@ -16,3 +16,5 @@
 相机与像素交接约定、调用限制和核对结果见[核心整理说明](../CORE_PIPELINE.md)。原始快照不改写。
 
 首次使用见[Pipeline手册](../pipeline/README.md)，由`pipeline.cloud sfm/run`传入批次和参考相机；不需要修改本模块全局变量。
+
+100张图片从头求相机的入口见[`pipeline.demo.sfm`](../pipeline/demo.py)：共享未知内参的PINHOLE，GLOMAP优化内参，不读取历史相机锚点；输出本次独立SfM坐标系与`cameras.npz`。图片保持原生666×370，不调用依赖原视频的`prepare_source`。

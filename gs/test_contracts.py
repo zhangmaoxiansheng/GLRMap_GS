@@ -8,11 +8,20 @@ from scipy.spatial.transform import Rotation
 from ..io_utils import save_npz, sha, write_json
 from .initialization import road_targets, source_masks
 from .road import road_gaussians
-from .state import cameras, gpu, verify
+from .state import FIELDS, cameras, gpu, verify, road_frozen_fields
 from ..pipeline.gs import plan
 
 
 class GSContracts(unittest.TestCase):
+    def test_appearance_training_keeps_geometry_frozen_and_is_opt_in(self):
+        self.assertEqual(road_frozen_fields({}), FIELDS)
+        self.assertEqual(road_frozen_fields({'road_train_appearance': False}), FIELDS)
+        self.assertEqual(road_frozen_fields({'road_train_appearance': True}),
+                         ('_xyz', '_scaling', '_rotation'))
+        for invalid in ['false', 1, None]:
+            with self.assertRaisesRegex(ValueError, 'must be a boolean'):
+                road_frozen_fields({'road_train_appearance': invalid})
+
     def patches(self):
         return [dict(first=0, stop=400, origin=np.zeros(3), basis=np.eye(3),
                      surface=dict(coefficients=np.array([5., 0, 0, 0, 0]), offset=np.zeros(2),

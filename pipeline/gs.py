@@ -4,7 +4,7 @@ import fcntl
 import json
 from pathlib import Path
 import subprocess
-from ..gs.state import ROOT, cameras, effective, verify, write
+from ..gs.state import ROOT, cameras, effective, verify, write, road_frozen_fields
 from ..io_utils import sha
 
 
@@ -14,7 +14,7 @@ def plan(config, fingerprint):
     steps = len(names)*config['steps_per_view_per_phase']
     return dict(config_fingerprint=fingerprint, views=len(names), fps=10, phase_steps=steps,
                 total_steps=steps*2, output=config['output'], stages=['prepare', 'train'],
-                road_freeze='all six tensors; no pose/K optimization',
+                road_frozen_fields=road_frozen_fields(config),camera_optimization=False,
                 Gaussian_densification=False, Gaussian_pruning=False,
                 RGB='dynamic valid mask only; real sky supervised',
                 input_boundary='Prepared RoMa road assets and native ReSplat16v PLY; no model inference')

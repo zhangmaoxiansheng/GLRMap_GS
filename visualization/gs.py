@@ -71,7 +71,9 @@ def review(c,fingerprint):
         videos[str(p)]=verify_video(p,count,rate)
     verify(out,c,fingerprint)
     write(out/'render_complete.json',dict(complete=True,config_fingerprint=fingerprint,iterations=r['iterations'],views=n,
-        source_hashes_unchanged=True,road_fields_bit_exact=True,means=means,videos=videos,final_PLY=r['final_PLY'],
+        source_hashes_unchanged=True,road_fields_bit_exact=r['road_fields_bit_exact'],
+        road_geometry_bit_exact=r.get('road_geometry_bit_exact',r['road_fields_bit_exact']),
+        means=means,videos=videos,final_PLY=r['final_PLY'],
         final_sha256=r['final_sha256'],manual_visual_review_complete=False,user_acceptance_pending=True))
 
 

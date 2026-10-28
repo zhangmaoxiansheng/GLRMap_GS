@@ -1,0 +1,1591 @@
+{
+  "source_experiment": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023",
+  "source_copy_records": [
+    {
+      "path": "input/images/003400.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003400.jpg",
+      "sha256": "b00b88cdceb8d16a29c2e87c35b51bc9dd3c86831ab5cd5e23ff8da7bab56aec"
+    },
+    {
+      "path": "input/masks/static_valid/003400.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003400.png",
+      "sha256": "b586a9184395a5690ea9a84f4fc0c009e4a957f529beea01ca9ccef36dc782a2"
+    },
+    {
+      "path": "input/masks/sky_foreground/003400.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003400.png",
+      "sha256": "0e27b8cba002015009b51c25241c55ffd1f3c11b0f72df497618a9ce3d370812"
+    },
+    {
+      "path": "input/images/003401.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003401.jpg",
+      "sha256": "95bc38fe4eb3bafd726779f336ad5b94a3707f39fab8dbf0550389b5598a919d"
+    },
+    {
+      "path": "input/masks/static_valid/003401.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003401.png",
+      "sha256": "99f226661aec9d3955b878a9b5961eb007bfb8152f376b99cd03ff34449c77b4"
+    },
+    {
+      "path": "input/masks/sky_foreground/003401.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003401.png",
+      "sha256": "c61376b325393717164a2d21437e769d2b3734155ca86699a52cff1ad0bfbf24"
+    },
+    {
+      "path": "input/images/003402.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003402.jpg",
+      "sha256": "668fe2bd6e50b02acc528cea3ce90db4c94fd59ca863e14b3b5d349ff2200afb"
+    },
+    {
+      "path": "input/masks/static_valid/003402.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003402.png",
+      "sha256": "04ea44e1495c28980d3b03023f86a19f0e534ba45b2f6c22860fbe2095537b8b"
+    },
+    {
+      "path": "input/masks/sky_foreground/003402.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003402.png",
+      "sha256": "d1df500a6159238264d2982a3cf855474299545d72e94b3953c3c208c1054d7a"
+    },
+    {
+      "path": "input/images/003403.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003403.jpg",
+      "sha256": "cf63541fb498788c8960cdbc6afe3ee89128dbf6450e7512d57b32675ce77a3c"
+    },
+    {
+      "path": "input/masks/static_valid/003403.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003403.png",
+      "sha256": "1fb411eb84ef2837c589a6eb7db6d0801416ef4bb0c9032423bd9f8c53404f5c"
+    },
+    {
+      "path": "input/masks/sky_foreground/003403.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003403.png",
+      "sha256": "c57ca5c804e330e7b8b62b0f57f159c4c25250bd619abecfc101718d54f09b13"
+    },
+    {
+      "path": "input/images/003404.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003404.jpg",
+      "sha256": "5a323459972113c8fe68ecce3b6a8dd10fc7d1362f53a2f590828fce1a59f8ec"
+    },
+    {
+      "path": "input/masks/static_valid/003404.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003404.png",
+      "sha256": "1ad13730371caf4827ea09d6abb95ec0622e766f20f47fdbe4ea814428d22416"
+    },
+    {
+      "path": "input/masks/sky_foreground/003404.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003404.png",
+      "sha256": "6d01565bfffe308fc7d38300d9cbaa1c2a6b39b1913946c48bfe04f919702082"
+    },
+    {
+      "path": "input/images/003405.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003405.jpg",
+      "sha256": "abcf984123de5f7ffdc3e7bb47e1ece17d7876372ed6990bea9c9cac6899a7b4"
+    },
+    {
+      "path": "input/masks/static_valid/003405.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003405.png",
+      "sha256": "ded26c0115c2e04f816803e9a960b89257ab3f81c0624007b698d5d015cf061f"
+    },
+    {
+      "path": "input/masks/sky_foreground/003405.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003405.png",
+      "sha256": "f45fe3e4a8f0827a4458420ba5a791d2fae9ddcb225eca2906c0cc85f2edec1d"
+    },
+    {
+      "path": "input/images/003406.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003406.jpg",
+      "sha256": "83ec49926281514660394e028aa68ab17f49fc7fd23aac25b24cc8ea5b3e015c"
+    },
+    {
+      "path": "input/masks/static_valid/003406.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003406.png",
+      "sha256": "f10eee740e406362851c5854918d576d1cf8fbf306101045460af3e592e03217"
+    },
+    {
+      "path": "input/masks/sky_foreground/003406.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003406.png",
+      "sha256": "3c16ada7e94a169bb4a68299a264a6ef6a0bf4be33e601b03de90dd7a0331b2e"
+    },
+    {
+      "path": "input/images/003407.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003407.jpg",
+      "sha256": "f1aade0254a3adad8e40ead5ac42983696b5a0eaf147f23ca4058b70ed54ffcb"
+    },
+    {
+      "path": "input/masks/static_valid/003407.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003407.png",
+      "sha256": "572277db334512bc2570717875857af60a4d8dd6610bcf28e2bc02ce3711195d"
+    },
+    {
+      "path": "input/masks/sky_foreground/003407.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003407.png",
+      "sha256": "e6359b39db7af205c9fe4b0a65b524c909cab41d0bd69216b8561dcef6751cb4"
+    },
+    {
+      "path": "input/images/003408.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003408.jpg",
+      "sha256": "9413aa730f5adcace383f3a572d6fe81570bbb675051d3b84f915560cb29ae0e"
+    },
+    {
+      "path": "input/masks/static_valid/003408.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003408.png",
+      "sha256": "ea2fb1c4a7ec2776e22a08553e11b2441279a1a5af1d8890b23ef15f54454933"
+    },
+    {
+      "path": "input/masks/sky_foreground/003408.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003408.png",
+      "sha256": "ff15b790d21834e640fec95cfe2d6bee41c32379a2463bcf0bce0656960f4c64"
+    },
+    {
+      "path": "input/images/003409.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003409.jpg",
+      "sha256": "86a1df123397a7fb52684033a55fcae47cc5bf4696bc9f56f36197a6b23c009e"
+    },
+    {
+      "path": "input/masks/static_valid/003409.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003409.png",
+      "sha256": "5f3f78138eb3c90c39fcd5bb515054eb9e5e79f26fe5463d9b1ce1ff7cdf27c2"
+    },
+    {
+      "path": "input/masks/sky_foreground/003409.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003409.png",
+      "sha256": "b961ccc942fac42fc6c862ac665a17a20fb5ec9dfdea254f451cc8e27b551e29"
+    },
+    {
+      "path": "input/images/003410.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003410.jpg",
+      "sha256": "2fc5e25de8e584b53c2924b171248f7b6c5099602b3219496bd2206d8956f9f8"
+    },
+    {
+      "path": "input/masks/static_valid/003410.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003410.png",
+      "sha256": "696a3739e311ca4a45e99c6762f4409a9a2c0ef0f1932c9806d7b2e66478b5cd"
+    },
+    {
+      "path": "input/masks/sky_foreground/003410.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003410.png",
+      "sha256": "afc8b554cfcd7614a9eb61e01baee20ed4cfad7d86a20414cb814afc238a3e55"
+    },
+    {
+      "path": "input/images/003411.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003411.jpg",
+      "sha256": "fb59088260fa4becda2b4bf275742d906c963b1b45591dd8128c8fb22e369712"
+    },
+    {
+      "path": "input/masks/static_valid/003411.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003411.png",
+      "sha256": "a3b2d1a2f6d58c929f432c4b7c25f55f0680b463716183732f6d33d305b8b3c4"
+    },
+    {
+      "path": "input/masks/sky_foreground/003411.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003411.png",
+      "sha256": "06c26941c5b0dfc1898b330987c3035e99bb1d7f819eeabc64eef88814a4e5a6"
+    },
+    {
+      "path": "input/images/003412.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003412.jpg",
+      "sha256": "40298000b2c21293489032e0219656ece7072f0d16644bf75e8191d3cfb7824d"
+    },
+    {
+      "path": "input/masks/static_valid/003412.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003412.png",
+      "sha256": "ae5945b78a8ed1c497bf59b6e9c3b33a53fe01fa032fafe2fa05d669cd7580ab"
+    },
+    {
+      "path": "input/masks/sky_foreground/003412.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003412.png",
+      "sha256": "a31fec859c2ca4cac488093ef4f90144109a5e4ac61f29bcd4fafaff3d50cf9c"
+    },
+    {
+      "path": "input/images/003413.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003413.jpg",
+      "sha256": "8ad86799ddcdba7221ef98f764668f5e126d9f135848f3edf9ba9ae31b370598"
+    },
+    {
+      "path": "input/masks/static_valid/003413.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003413.png",
+      "sha256": "f4ba5163bc10c154acd8d437e1649d68ef24653af3e8cabeebc071663be1c4b0"
+    },
+    {
+      "path": "input/masks/sky_foreground/003413.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003413.png",
+      "sha256": "2f69876f539e7c4d80b8c1e68a5f70e68cfc06dd4238232d365aadc29a0509b1"
+    },
+    {
+      "path": "input/images/003414.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003414.jpg",
+      "sha256": "c055a3f22cd65056a9fea7bf4245b0fa24cdf4ae0ffda9a1322c2ba371522263"
+    },
+    {
+      "path": "input/masks/static_valid/003414.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003414.png",
+      "sha256": "82554e57d30555f4bd57206245561e451dc1091e8ef78afcc654189b374e7d1d"
+    },
+    {
+      "path": "input/masks/sky_foreground/003414.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003414.png",
+      "sha256": "224f987f3311aea4f2b87cf7c9ed0b8a2ee81f3febae3bede01ef4109fb72ea4"
+    },
+    {
+      "path": "input/images/003415.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003415.jpg",
+      "sha256": "014f255c5b247933ad8a83f0f46b5dd76621b66350222f2414f9f14ee4704cc4"
+    },
+    {
+      "path": "input/masks/static_valid/003415.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003415.png",
+      "sha256": "a43b2946e0f434fe32cd4f0771c29a3d502af722bb781cc17b95ade8c184cbf4"
+    },
+    {
+      "path": "input/masks/sky_foreground/003415.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003415.png",
+      "sha256": "2c0aedf850e4715ed3ed317ca2703b79aa90e32dc22b04ea53216667fc9e4888"
+    },
+    {
+      "path": "input/images/003416.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003416.jpg",
+      "sha256": "8086c3cff37062d5f3f66572f445c4dc18d1d7e4c41d25a83c0f567914eafdc7"
+    },
+    {
+      "path": "input/masks/static_valid/003416.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003416.png",
+      "sha256": "4261f320813957f9d3e36d5b06e3f5d63ae6550f10e917a6ec1cc05962e0560e"
+    },
+    {
+      "path": "input/masks/sky_foreground/003416.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003416.png",
+      "sha256": "3df008c267c736fc66cb3cb7f09be1dd6547e1bfb40f16810f4f2cf3197e81a7"
+    },
+    {
+      "path": "input/images/003417.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003417.jpg",
+      "sha256": "590032f2e5e6ac21a3cbbab64914a050e3acfca9cd72a7a88ad4fd5418ce5630"
+    },
+    {
+      "path": "input/masks/static_valid/003417.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003417.png",
+      "sha256": "1663f3fb4f2c7f39523692939d0c6a1157c463a4e1d9a519085f142d04699725"
+    },
+    {
+      "path": "input/masks/sky_foreground/003417.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003417.png",
+      "sha256": "53a8d032200c3c92066600fa8b053ba879e8feae47040d830c2110625c500ac8"
+    },
+    {
+      "path": "input/images/003418.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003418.jpg",
+      "sha256": "57db9a9c0094d10d99200c26638778be2c1b96e03e8fd04c11ebc1dbe98ce345"
+    },
+    {
+      "path": "input/masks/static_valid/003418.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003418.png",
+      "sha256": "49e1e048fdc6d336e6bc6697bbc86e7767ff5ddaf2e140335f16a27b9c5f8e93"
+    },
+    {
+      "path": "input/masks/sky_foreground/003418.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003418.png",
+      "sha256": "e2b5b0b2ae26baabf9faed322b5c876a5e49b1e49a47b891b340b804f75f60da"
+    },
+    {
+      "path": "input/images/003419.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003419.jpg",
+      "sha256": "7d66b9a7d0db7ad198f27b69b0c7d0aa9b5d30d66ed8e33e2b05d0bdbbb65669"
+    },
+    {
+      "path": "input/masks/static_valid/003419.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003419.png",
+      "sha256": "dfe06bfcecb0eba82cb40e2b1be9ca8ba1aeeff739b5a5e7bd1e78d398b17d59"
+    },
+    {
+      "path": "input/masks/sky_foreground/003419.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003419.png",
+      "sha256": "173c7ecefb763480d206a5578c92cd85e42412baa6a88bef902ac741647ecfce"
+    },
+    {
+      "path": "input/images/003420.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003420.jpg",
+      "sha256": "c45e48e6c270b99ed1690a4456876bbc9aa2381c1d4e502788c7553d70c24805"
+    },
+    {
+      "path": "input/masks/static_valid/003420.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003420.png",
+      "sha256": "732a9a2020380d804c8182aa493f27d2f179de389fc577b223f22e071ad78c43"
+    },
+    {
+      "path": "input/masks/sky_foreground/003420.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003420.png",
+      "sha256": "8b2eaaa7501fdb7bc2bcf34f07d1bf8a8b4afcf7a2aef61bf94c92aa9f1fd3af"
+    },
+    {
+      "path": "input/images/003421.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003421.jpg",
+      "sha256": "70e0654b414e1f29b794323dc229646d144cbece69cc6e521a88e3af706fa415"
+    },
+    {
+      "path": "input/masks/static_valid/003421.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003421.png",
+      "sha256": "8aad7e71c6efcf2e45292939db0d4a49f8b4b026125662c1676f1968de120a65"
+    },
+    {
+      "path": "input/masks/sky_foreground/003421.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003421.png",
+      "sha256": "37e5f050100beac54448521ef546a5409aa81ad4c39d9439b1132fafd7b63880"
+    },
+    {
+      "path": "input/images/003422.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003422.jpg",
+      "sha256": "8e14f5ead02a6f42ce8f3169bbb6fd6601789213b22a20a6ec273d25a18595f6"
+    },
+    {
+      "path": "input/masks/static_valid/003422.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003422.png",
+      "sha256": "635d6bbad9d3f33cc603cc30c7100d49bae2119a4acb3ae480556a959aaa96e2"
+    },
+    {
+      "path": "input/masks/sky_foreground/003422.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003422.png",
+      "sha256": "22d5a031a8c10a298f85729bf3bfd8d101fc8bbc7b180cbcb214a234948dc198"
+    },
+    {
+      "path": "input/images/003423.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003423.jpg",
+      "sha256": "10f913671cbe86520c492b61f441d4d8064c9eefadf61588bdab35d0c5c005f8"
+    },
+    {
+      "path": "input/masks/static_valid/003423.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003423.png",
+      "sha256": "493f694c0fc58a5f332bee258eb86b62ee6d129e24726b891a860a61dedbb5c4"
+    },
+    {
+      "path": "input/masks/sky_foreground/003423.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003423.png",
+      "sha256": "b0a38c1ea0533687e158cad62b6b36ad7926cdf6d5b504084f02ac50c5ac5713"
+    },
+    {
+      "path": "input/images/003424.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003424.jpg",
+      "sha256": "f289a334f72dbd1cc7634502093d1155ade4578b33925f1d8128ab6e5dd1818b"
+    },
+    {
+      "path": "input/masks/static_valid/003424.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003424.png",
+      "sha256": "48893963e5b2e5d3992981959bc106edfb4e547dc96a96b4ae531f79f48e038a"
+    },
+    {
+      "path": "input/masks/sky_foreground/003424.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003424.png",
+      "sha256": "6d750dd8f9e250c12369de5017a15a90b94adb4bcbe00e40ca5dfa8c32c3f443"
+    },
+    {
+      "path": "input/images/003425.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003425.jpg",
+      "sha256": "f8d0fe09995612cf1a8ea16774a3fa7569c0b2d0e89ff6ec725dafe1139344bc"
+    },
+    {
+      "path": "input/masks/static_valid/003425.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003425.png",
+      "sha256": "8e2f746a8983679cbabbc458b7285ca586d8d34831a1efea3cf8b7f2a839b885"
+    },
+    {
+      "path": "input/masks/sky_foreground/003425.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003425.png",
+      "sha256": "5a52bf14d6815442556ee4d54de1c84c8e9e7a5fcb626b99da4565c121e633c5"
+    },
+    {
+      "path": "input/images/003426.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003426.jpg",
+      "sha256": "a5f87c3b75dd29e1c89c9dfa1d4490696282ee8486385168954e024d08d9f113"
+    },
+    {
+      "path": "input/masks/static_valid/003426.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003426.png",
+      "sha256": "40f94bdd3bbd87178c84bf71c3a236dd1a4e369b2812a7abd820625707f2e118"
+    },
+    {
+      "path": "input/masks/sky_foreground/003426.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003426.png",
+      "sha256": "2be8f54fc48b106599cacbf0bd9263c00012bf50a3e9c2a1f94d696e7fc2e22d"
+    },
+    {
+      "path": "input/images/003427.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003427.jpg",
+      "sha256": "6818996e075aa7da484b586eacdb485e257736054385a0eaa197878cc82aa1a4"
+    },
+    {
+      "path": "input/masks/static_valid/003427.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003427.png",
+      "sha256": "7a1f6226b9ec2df025dd47713eab9660a4c022262793ef4583157eb4d54bd85d"
+    },
+    {
+      "path": "input/masks/sky_foreground/003427.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003427.png",
+      "sha256": "e65869d1d145157b394ccb019dec2e147e851a0c1e30982770b9c2f2a4dbdedd"
+    },
+    {
+      "path": "input/images/003428.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003428.jpg",
+      "sha256": "a54c3a957891177938544d4d65e05928b6d7a84c8d3542d99384b7ba5966ed78"
+    },
+    {
+      "path": "input/masks/static_valid/003428.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003428.png",
+      "sha256": "ad6c4488fedcecb02df26c9a72690a0da47024c7311e4bb333d4a6f14b7b9f02"
+    },
+    {
+      "path": "input/masks/sky_foreground/003428.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003428.png",
+      "sha256": "6b9853e1c5487e8653363314d59e71e53d69deeb7c9073cd2b570bb30d97e9eb"
+    },
+    {
+      "path": "input/images/003429.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003429.jpg",
+      "sha256": "1b028fc00420134f2d818d017e86cb3965d09cbef4953f5dd65e380b86d1ee15"
+    },
+    {
+      "path": "input/masks/static_valid/003429.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003429.png",
+      "sha256": "7fa269550eb749d53dec8cbb6504dadee4071eed835b81ee439cafb34501ada9"
+    },
+    {
+      "path": "input/masks/sky_foreground/003429.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003429.png",
+      "sha256": "a028fc5222bd675c320d104068e7d305d7c3effeacb77af771337c61e2709959"
+    },
+    {
+      "path": "input/images/003430.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003430.jpg",
+      "sha256": "1d98b55fa69c8c7d6bab985e973697c4cab6530794ea87a147640ba7a9de816a"
+    },
+    {
+      "path": "input/masks/static_valid/003430.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003430.png",
+      "sha256": "176fd5f52990c31d64805b9cdc3aacf271dadd5b5e46081a332f863aa9782219"
+    },
+    {
+      "path": "input/masks/sky_foreground/003430.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003430.png",
+      "sha256": "0617ae0ba11c1a732eaea4f56b01b70aa883725158305532ceb7f1dc165346cf"
+    },
+    {
+      "path": "input/images/003431.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003431.jpg",
+      "sha256": "7ea9a79c4d93db556d858dc42af62058411143945af4d7539ce93219b808116c"
+    },
+    {
+      "path": "input/masks/static_valid/003431.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003431.png",
+      "sha256": "825e220bb0c198c643dbf303cac6902a4cdbe65314d1dacc188fe912e24ec4aa"
+    },
+    {
+      "path": "input/masks/sky_foreground/003431.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003431.png",
+      "sha256": "991b0ff128e4004c4d1038c38a4758258754ce7aec9c6f9c25657341ed6d62a1"
+    },
+    {
+      "path": "input/images/003432.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003432.jpg",
+      "sha256": "6a81c29cdf86d08bef32cbff9e9a84c4e3d556b46ee9594e70bb699e229eea7b"
+    },
+    {
+      "path": "input/masks/static_valid/003432.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003432.png",
+      "sha256": "fc2c13deb3865f0c02a5f937b0267b8d647cffa4396462bbe60aec7f345e9dee"
+    },
+    {
+      "path": "input/masks/sky_foreground/003432.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003432.png",
+      "sha256": "5b327a6bfcbc028e9c009f9e1e8e7ac2d0fb613a223d376fa6c2f0aa0defaa53"
+    },
+    {
+      "path": "input/images/003433.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003433.jpg",
+      "sha256": "99ddaa87af2ed1fdea91e1fb06f0ba419ee533ad8b0b745a14eef94e3afcebd7"
+    },
+    {
+      "path": "input/masks/static_valid/003433.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003433.png",
+      "sha256": "72acd1341668871912f26d5f287819b160502fd7ada5f48bb5d341009ab736da"
+    },
+    {
+      "path": "input/masks/sky_foreground/003433.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003433.png",
+      "sha256": "e06037a60d5dcb30aa3dddf52d395de138cba00d12b67a067cfa3901941d08b7"
+    },
+    {
+      "path": "input/images/003434.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003434.jpg",
+      "sha256": "5291f7612a670726fcecda30bf6ccb4d8762a743b1d65f672a6f1109f00fa8af"
+    },
+    {
+      "path": "input/masks/static_valid/003434.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003434.png",
+      "sha256": "93e30b3a759227b480fb8c9270ab32205dc56349d824417a792c16ea79e15169"
+    },
+    {
+      "path": "input/masks/sky_foreground/003434.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003434.png",
+      "sha256": "74eee08a7cb861dda98079b5d04402c3cdd4eabc008561cb5103e7962f969b87"
+    },
+    {
+      "path": "input/images/003435.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003435.jpg",
+      "sha256": "04691a122e764e804499e897c103f12edb6336d6eb099639959aff898dd266d0"
+    },
+    {
+      "path": "input/masks/static_valid/003435.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003435.png",
+      "sha256": "cff60421b45d5c258d35857d304a2dd9826ff60cf7cc19b431497e323675db7c"
+    },
+    {
+      "path": "input/masks/sky_foreground/003435.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003435.png",
+      "sha256": "61035a32e12846ba47efa31d3517fb8c34ed8cd7ed5ea075e124e46b51c81b8f"
+    },
+    {
+      "path": "input/images/003436.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003436.jpg",
+      "sha256": "9459f87618a0f0c431961f5fe3cc716acfc1b2c54377680e7054cfb5750b52a5"
+    },
+    {
+      "path": "input/masks/static_valid/003436.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003436.png",
+      "sha256": "298bb740768a2e6497dbd292c191f318ff980db10b9654749ab3ebb70688d820"
+    },
+    {
+      "path": "input/masks/sky_foreground/003436.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003436.png",
+      "sha256": "18bc181f00ff7a1b7f7cc8bba47f75244e5dc6d2907cac5657c430b8f7576a45"
+    },
+    {
+      "path": "input/images/003437.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003437.jpg",
+      "sha256": "baca54676860f80881b0b277daa57da1ab8cc9bb43516d502f483c53527eb27a"
+    },
+    {
+      "path": "input/masks/static_valid/003437.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003437.png",
+      "sha256": "9d715c34adb0c64ccf5c262534018e56e612dc9d39a4a69e68c79c49e955f406"
+    },
+    {
+      "path": "input/masks/sky_foreground/003437.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003437.png",
+      "sha256": "79c91c43463aa3ffc3e3abcd9e1fe908a8eabea285ef016b140ade2f2653ee19"
+    },
+    {
+      "path": "input/images/003438.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003438.jpg",
+      "sha256": "9ee9202c7d0ae2c81cf8fa340f9ad202cc5c05a11c68823cc47d050899307a7f"
+    },
+    {
+      "path": "input/masks/static_valid/003438.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003438.png",
+      "sha256": "87bc72ff9c50b97d0228f2803a24b5fc3d6ace6f7812c2b3ce32fd3cac0f1fae"
+    },
+    {
+      "path": "input/masks/sky_foreground/003438.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003438.png",
+      "sha256": "8ce3d3e4fb1dc0410c5f0e42d5213d526bf7b0d77d5dbebfbfb117f612d9b172"
+    },
+    {
+      "path": "input/images/003439.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003439.jpg",
+      "sha256": "29ae15581f840a71175ce9751625324c1bc4cda2f31a217331c018126f436af4"
+    },
+    {
+      "path": "input/masks/static_valid/003439.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003439.png",
+      "sha256": "c2d0caa1eb8a82852e134a386058d34447ac3e6e00c2e0695bc31f7b2a66049b"
+    },
+    {
+      "path": "input/masks/sky_foreground/003439.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003439.png",
+      "sha256": "cd8299e57d0b89f7b88d3c35c619c1d2ff12138a309c3efd0eb04f310752e3b7"
+    },
+    {
+      "path": "input/images/003440.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003440.jpg",
+      "sha256": "da3c6bcb721d595facd9d4c5dbcf8bc16b33f97e590622e248dd9bdaa288375d"
+    },
+    {
+      "path": "input/masks/static_valid/003440.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003440.png",
+      "sha256": "a88d1617e035dc5921b7004b2f1ac5e54359521734c8a5356de42224f0a70e0c"
+    },
+    {
+      "path": "input/masks/sky_foreground/003440.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003440.png",
+      "sha256": "cb3f9ce19ff6a86c27bf40416a7a09716186b0061d5c1146cfb8df40edd970c9"
+    },
+    {
+      "path": "input/images/003441.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003441.jpg",
+      "sha256": "04c7f6e8c0b265d6ebaef4bb48c10abdf9f6c1cf1d41fb5c633a46d04578c67b"
+    },
+    {
+      "path": "input/masks/static_valid/003441.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003441.png",
+      "sha256": "f9c79a8ddf4e5f09b6a594fe9b793a2638ef3699fade390c857617bd42e6dfd4"
+    },
+    {
+      "path": "input/masks/sky_foreground/003441.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003441.png",
+      "sha256": "681c84d689127448dea9d3ca6a455d3c17beb68585ceff281f09d16e9775c7ad"
+    },
+    {
+      "path": "input/images/003442.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003442.jpg",
+      "sha256": "f168efa03f76b2aaf21126d81cc8014586c9eceeb3e7062a972b52aaefdccfd4"
+    },
+    {
+      "path": "input/masks/static_valid/003442.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003442.png",
+      "sha256": "48ccd69daf872b2e3ea38ce90cc3662691a0a88002e6206dc92b746a5821cddb"
+    },
+    {
+      "path": "input/masks/sky_foreground/003442.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003442.png",
+      "sha256": "43544410e51bc5ef7355506ee02c0ad674e1d95d1e7939ead1c44cf2a2256235"
+    },
+    {
+      "path": "input/images/003443.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003443.jpg",
+      "sha256": "a28baf517259a3a724018a21455925da1b2f8ee0800217735e6e4ee706f1ca47"
+    },
+    {
+      "path": "input/masks/static_valid/003443.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003443.png",
+      "sha256": "898fb1010eab89b82bf1b50153b7e28d0f0878d674fe825bfb76fb99074a3145"
+    },
+    {
+      "path": "input/masks/sky_foreground/003443.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003443.png",
+      "sha256": "5a5b68468a33ffcd8c112c31fbd9ba3f0738417fc5c2d50429ec1c5a5c343ebf"
+    },
+    {
+      "path": "input/images/003444.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003444.jpg",
+      "sha256": "00f5b174a2e7737e396301e4ad7f574c8be91d85f0302290503501fda7e54e64"
+    },
+    {
+      "path": "input/masks/static_valid/003444.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003444.png",
+      "sha256": "0f09c16d87b4caea1262af0fd022077e30825d39fe24a9f961cae55ab91f2b2f"
+    },
+    {
+      "path": "input/masks/sky_foreground/003444.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003444.png",
+      "sha256": "d4c80157eb85875e9e2469aea41cb357b668f5b55e55d41ab1d160b0819cc485"
+    },
+    {
+      "path": "input/images/003445.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003445.jpg",
+      "sha256": "e9695ce2aa3c2b2d9d637f7567b3bc59d7b49819d5e50ce53a5838f02ae05992"
+    },
+    {
+      "path": "input/masks/static_valid/003445.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003445.png",
+      "sha256": "b5ddc319bd103a3eccd4c4fe8e7b9ce02507a36cdb558b3b38146dd33f654ebb"
+    },
+    {
+      "path": "input/masks/sky_foreground/003445.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003445.png",
+      "sha256": "22fc62a585360665ddd657590182c39ce52984e410fcd101bc68ff86a03a21fc"
+    },
+    {
+      "path": "input/images/003446.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003446.jpg",
+      "sha256": "4c5aa55fb9dd105ce5622b5d34308f1e2bb375942d4ff2c74dad9a08508463c7"
+    },
+    {
+      "path": "input/masks/static_valid/003446.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003446.png",
+      "sha256": "12af967947ca80a6fef346773490efb55d1e02cec6f44b77b52a48ccb3737aff"
+    },
+    {
+      "path": "input/masks/sky_foreground/003446.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003446.png",
+      "sha256": "8cb291cf7254e15b07b6fa98ee78579f08c94f208b72668bbd032e3bfd1e64d4"
+    },
+    {
+      "path": "input/images/003447.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003447.jpg",
+      "sha256": "eed15355f330f1ff8af9e67bd0cc6760891c3b5b5d6f14f34c08318b5fa25e7c"
+    },
+    {
+      "path": "input/masks/static_valid/003447.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003447.png",
+      "sha256": "5b71c99c73caa03903c2fb605c8c22b9e5fe39eab034d72ec3399894db33c04d"
+    },
+    {
+      "path": "input/masks/sky_foreground/003447.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003447.png",
+      "sha256": "8e8635e10d24210491226de57bf6d65ab5252a00cafe6b2ed84636dd9d01d917"
+    },
+    {
+      "path": "input/images/003448.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003448.jpg",
+      "sha256": "5839431624714cc948514dfbdfeee95d858300d36cea474d5bb5756810158857"
+    },
+    {
+      "path": "input/masks/static_valid/003448.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003448.png",
+      "sha256": "d0cf7cba433007dd24a314a74a9df2900920248e189037792a5384c56f08b51b"
+    },
+    {
+      "path": "input/masks/sky_foreground/003448.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003448.png",
+      "sha256": "388472df6e46a24677ac0fb298689525c0fafcfe4db27b2c1b755e447db94cbb"
+    },
+    {
+      "path": "input/images/003449.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003449.jpg",
+      "sha256": "87354c85960304468c97589abd1f3031aee8e9eb53c3d6b80e1db8a7e6f540cb"
+    },
+    {
+      "path": "input/masks/static_valid/003449.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003449.png",
+      "sha256": "de06ac10270aea3e900663f1a3fad1485950054ce0458574083ca8d9decf0a6f"
+    },
+    {
+      "path": "input/masks/sky_foreground/003449.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003449.png",
+      "sha256": "03dfed314df5c28ccd5595b520f0ab83a70782ae27928c091d982f0d7e3945e2"
+    },
+    {
+      "path": "input/images/003450.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003450.jpg",
+      "sha256": "58cba504c0407df11cc2a5c0e05265e71e2446b6a8a7c4a1f19630e36871a86a"
+    },
+    {
+      "path": "input/masks/static_valid/003450.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003450.png",
+      "sha256": "aeb0304e3be20dc70171f9b1db85ad281125171fdfff5c672dcfc3a9629ee65e"
+    },
+    {
+      "path": "input/masks/sky_foreground/003450.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003450.png",
+      "sha256": "495d15a057451c06042959d3826cd72c8a679186cb78806c24eb915eaf942b10"
+    },
+    {
+      "path": "input/images/003451.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003451.jpg",
+      "sha256": "c0943ef7d172eaa1ffbca5d2c90b7c8eff7a32f7fb9dbc418cb26681cbf498db"
+    },
+    {
+      "path": "input/masks/static_valid/003451.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003451.png",
+      "sha256": "8dd52f0d62deab17a9e2ec5ea2c60e95c232412b6bb3d81849c1c3a5608ea09e"
+    },
+    {
+      "path": "input/masks/sky_foreground/003451.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003451.png",
+      "sha256": "ae35f8f0277144bb0d53dbe690f8ff0d68576e22a8eed05a28fb415de83d8ccb"
+    },
+    {
+      "path": "input/images/003452.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003452.jpg",
+      "sha256": "c433836b5bcdfd0474008e0416ecd087a5eae878bda6b521e92b4ab2cab06b49"
+    },
+    {
+      "path": "input/masks/static_valid/003452.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003452.png",
+      "sha256": "746d0b77a38336877d5b0118ac15744409c99828cef4de51465f3d95b14ad245"
+    },
+    {
+      "path": "input/masks/sky_foreground/003452.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003452.png",
+      "sha256": "3b1ed64be99d2ea9c476c943b45a89a1f4769e40683a4f687a54e9255ce14d13"
+    },
+    {
+      "path": "input/images/003453.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003453.jpg",
+      "sha256": "d1c387c25fe8dd5a06b2ee00f37cc7a2196c78d93e95ffda708dcb23ef69ecfe"
+    },
+    {
+      "path": "input/masks/static_valid/003453.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003453.png",
+      "sha256": "a7592a81580ec2505ae73f5b66b6247bf374d0998e416fde7fbde95cc05511b6"
+    },
+    {
+      "path": "input/masks/sky_foreground/003453.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003453.png",
+      "sha256": "6086c4e61db600ad5d2fa0637cfbfa3fab7305104e42cfa108833b86a9efe5c0"
+    },
+    {
+      "path": "input/images/003454.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003454.jpg",
+      "sha256": "8183d468c40e1fe6011fdaf85fcf2c3e7fb521728fd3e7e53df009463885f8fd"
+    },
+    {
+      "path": "input/masks/static_valid/003454.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003454.png",
+      "sha256": "be9fb5c4a482ab2a2692d2e739a5c9c1f0125646147247fb400d3bec1d1257a8"
+    },
+    {
+      "path": "input/masks/sky_foreground/003454.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003454.png",
+      "sha256": "122a02c9ddd03cca9bc73bcc553d1416e2c257f8d9fb5389a7f7c0ddc2473713"
+    },
+    {
+      "path": "input/images/003455.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003455.jpg",
+      "sha256": "722c391c120d2f728647a1c86215d02c52cade39b08eb8d8290e8af1e1d079ed"
+    },
+    {
+      "path": "input/masks/static_valid/003455.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003455.png",
+      "sha256": "e449b0622ddfc321c947cb6de49225582cae94687800b8be1bcd932029245208"
+    },
+    {
+      "path": "input/masks/sky_foreground/003455.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003455.png",
+      "sha256": "922dd3aaf95896de181e35919717c7d764922d4cbb7e3309b27be4adb290dcf4"
+    },
+    {
+      "path": "input/images/003456.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003456.jpg",
+      "sha256": "d8d6b9399326091fc6c80b289ec685c955c927e789b447a70217f19890f5dc9f"
+    },
+    {
+      "path": "input/masks/static_valid/003456.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003456.png",
+      "sha256": "beb5d7be4baf236ace3159a769055af55502c7682f5730a9abd80203d694abed"
+    },
+    {
+      "path": "input/masks/sky_foreground/003456.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003456.png",
+      "sha256": "3a54dc2caf01aa8a967cfd7b6b7f0eed35a0451dfb2e582e72f42e972b9efac0"
+    },
+    {
+      "path": "input/images/003457.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003457.jpg",
+      "sha256": "36a713513c7883e47704664233da6a337b9b19992b500f203d85bd3767b9a63f"
+    },
+    {
+      "path": "input/masks/static_valid/003457.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003457.png",
+      "sha256": "1e806e2f69d11afc32c22ee41ea7bf2dcf9b9719ce73a0b1405dfa06ce3f68c4"
+    },
+    {
+      "path": "input/masks/sky_foreground/003457.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003457.png",
+      "sha256": "ea633886bd5f8c6ba332039d3dacf389701365f14c735c9f10a914f114549f62"
+    },
+    {
+      "path": "input/images/003458.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003458.jpg",
+      "sha256": "2f5113e6fcb32e7553e23d843b0465bef54249a062a871f18e4e487bdd92f43e"
+    },
+    {
+      "path": "input/masks/static_valid/003458.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003458.png",
+      "sha256": "f908bed1e9c4158c6e181a5a7f05f86a54fee539f9129712c0556af9bbdd6905"
+    },
+    {
+      "path": "input/masks/sky_foreground/003458.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003458.png",
+      "sha256": "66298463d32af31b7a38d622c83e0a6c7a129dcc62b1a295b49ffc505c17efbf"
+    },
+    {
+      "path": "input/images/003459.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003459.jpg",
+      "sha256": "d38a9e5d66d5609ea2a3eca8635b8fc702b0454bb9c1a93674431559b33c5b70"
+    },
+    {
+      "path": "input/masks/static_valid/003459.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003459.png",
+      "sha256": "158f24383fe593cb64adc6f2cdbe7079f4ff53f2605257086db09bae790ef261"
+    },
+    {
+      "path": "input/masks/sky_foreground/003459.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003459.png",
+      "sha256": "da72d0555be8ecdd3a182a157ad3d678a9c2037d15afa1af8124e1024a3d1853"
+    },
+    {
+      "path": "input/images/003460.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003460.jpg",
+      "sha256": "870c416327c5398ed300fff2fafe86e4728bd3b48af6075bffac236d70baec25"
+    },
+    {
+      "path": "input/masks/static_valid/003460.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003460.png",
+      "sha256": "cce27287118013e4db3e29e3e56a41ea6594c6fbfdc519f7bfeace750ff604e0"
+    },
+    {
+      "path": "input/masks/sky_foreground/003460.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003460.png",
+      "sha256": "385e1fe5be511ae694a348a2a070a0c8a91de5c74cbded37e016bf91218c8a52"
+    },
+    {
+      "path": "input/images/003461.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003461.jpg",
+      "sha256": "97c3d549d00eae6f1472ade7abb3cf3500a4a938dab4dfdede59b42cd3926711"
+    },
+    {
+      "path": "input/masks/static_valid/003461.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003461.png",
+      "sha256": "e955f349b1ded06e357d580814187f46670a6e58dd076aa1cedbc5db18173091"
+    },
+    {
+      "path": "input/masks/sky_foreground/003461.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003461.png",
+      "sha256": "30a447b7b7c7dc7a7809c3c0736e5cba6809b9cbce0e2369f179b1e8c9f9dd69"
+    },
+    {
+      "path": "input/images/003462.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003462.jpg",
+      "sha256": "855c866ae42afd71415d64fba5dae634c69c8c1c1258b2fde73b2fcb8dfad838"
+    },
+    {
+      "path": "input/masks/static_valid/003462.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003462.png",
+      "sha256": "8bd732f745188a8a459636cd26c177882f0bf5f4ae842e8cb8add94b79efe72d"
+    },
+    {
+      "path": "input/masks/sky_foreground/003462.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003462.png",
+      "sha256": "3b5b63898426a8d9caae308f47372eee2ed164c254f6f2913468e42bece0f528"
+    },
+    {
+      "path": "input/images/003463.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003463.jpg",
+      "sha256": "c763262a6091f0fdd78a4aa1d463efe9f4fb08b2a019e8cb195d56ad7b5ecbeb"
+    },
+    {
+      "path": "input/masks/static_valid/003463.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003463.png",
+      "sha256": "a8435fce3ccac3b5efdaafb0e2ab7199a9841e905481765b44228c48a52cba35"
+    },
+    {
+      "path": "input/masks/sky_foreground/003463.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003463.png",
+      "sha256": "e9efff4d0f6b7fdf9560f4eb9474afbf54158aa03a6eb05dc98e62f0c83a876f"
+    },
+    {
+      "path": "input/images/003464.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003464.jpg",
+      "sha256": "5fe651b0d39e6ce96371c846d5c0f322c7d261ca909b41746d44f004632259d5"
+    },
+    {
+      "path": "input/masks/static_valid/003464.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003464.png",
+      "sha256": "c4443da0ac70d65845fecc96c0ae67f5089c236f5abe38958b12399ab10691fe"
+    },
+    {
+      "path": "input/masks/sky_foreground/003464.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003464.png",
+      "sha256": "65beffb68709bba6427360f4da7ff78340b9b1efdd27d4e8828d6ea6a0738ca4"
+    },
+    {
+      "path": "input/images/003465.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003465.jpg",
+      "sha256": "7f13f4aa14f5f00b65d588b4378bcccb11024a101d2a07f4f4476869524fded7"
+    },
+    {
+      "path": "input/masks/static_valid/003465.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003465.png",
+      "sha256": "141fc3ec67616a17e4aa8a5a5cfa1ce2eaeabba54423e996575cb4985d80d6a2"
+    },
+    {
+      "path": "input/masks/sky_foreground/003465.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003465.png",
+      "sha256": "fe3be6737396eedbaaf29356e46ef708220496ede1eeaa52a2b988c911401abd"
+    },
+    {
+      "path": "input/images/003466.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003466.jpg",
+      "sha256": "afe957c5136d77cf0f669677eba351e964548b4803dba468ac8328a812f1171c"
+    },
+    {
+      "path": "input/masks/static_valid/003466.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003466.png",
+      "sha256": "7af08ffab0c1aa3ef45b2f10175ed0b9aae07399d014535d09c32a33d0c2d2e4"
+    },
+    {
+      "path": "input/masks/sky_foreground/003466.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003466.png",
+      "sha256": "fd5c8c9640dcd0cbe83907bd84085d93ff5a0660c1c0ebcb433b9ca3a24ad550"
+    },
+    {
+      "path": "input/images/003467.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003467.jpg",
+      "sha256": "3d41da4d2b82ff01ed02cf004b04dbf15aa1ba2c6f5efb887b677209329f23ff"
+    },
+    {
+      "path": "input/masks/static_valid/003467.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003467.png",
+      "sha256": "c85f678a69493411e28a95ade3f9ec06e30b187ec51d082e740657d567baaff4"
+    },
+    {
+      "path": "input/masks/sky_foreground/003467.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003467.png",
+      "sha256": "aa480db5bc1f84af6102cf0108d7b2f799295f8024c9f1c46d38f10354c9a5a0"
+    },
+    {
+      "path": "input/images/003468.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003468.jpg",
+      "sha256": "72880028c0c042acd83ae84f154c3581d0ad5de04c862d60751a7fea71afdfca"
+    },
+    {
+      "path": "input/masks/static_valid/003468.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003468.png",
+      "sha256": "c86525c4fe6363b7db70473e578d931184e7d99a3a0447740050905596cc1a36"
+    },
+    {
+      "path": "input/masks/sky_foreground/003468.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003468.png",
+      "sha256": "ac0c53f653520ba6247c853cb5bedee91d4ef8e50dfa6776a08991b066ad2d99"
+    },
+    {
+      "path": "input/images/003469.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003469.jpg",
+      "sha256": "cd22daf0aca19b1af0a9a4ccf1fce350405550fce12b781b04f7c7674021e27f"
+    },
+    {
+      "path": "input/masks/static_valid/003469.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003469.png",
+      "sha256": "ef9f97188cdf75c3b2f799ddafcdfdfe308e407765145d32b26f9bd87b049929"
+    },
+    {
+      "path": "input/masks/sky_foreground/003469.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003469.png",
+      "sha256": "3e94ba9f20162eeb115ff93f99a977b4f29f451646143ddb4412197b907b8ca0"
+    },
+    {
+      "path": "input/images/003470.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003470.jpg",
+      "sha256": "018f07c24a4da0f7c3733796172c44ed7266a0948ba8d959ece9bb0b9b7699b2"
+    },
+    {
+      "path": "input/masks/static_valid/003470.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003470.png",
+      "sha256": "8fd379ee5f1a2442fb0b0081fff6479f066c9c9bb8b41499b3ed798f0ed905d8"
+    },
+    {
+      "path": "input/masks/sky_foreground/003470.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003470.png",
+      "sha256": "9d2b260f1368c86a95b32b3595a77d0a42fb68e9935a3649b350c14a835a1d4c"
+    },
+    {
+      "path": "input/images/003471.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003471.jpg",
+      "sha256": "772f908e5bcace4278382e3d96bd75d80869a51264662145776324d80773cdfa"
+    },
+    {
+      "path": "input/masks/static_valid/003471.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003471.png",
+      "sha256": "3e7b862cb91e7b6a180a18b31892ef2e001b3b2c92cb7f1dbe024ed61300062c"
+    },
+    {
+      "path": "input/masks/sky_foreground/003471.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003471.png",
+      "sha256": "d3b7bba2d27fbefd1d1893d3c27be4720e809865dab4ed464e51542eb75a5961"
+    },
+    {
+      "path": "input/images/003472.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003472.jpg",
+      "sha256": "0abbe6ddd53e4b0925c9bc310e3b0d6abb451a1ac9a77ed44e6f4391135a4c86"
+    },
+    {
+      "path": "input/masks/static_valid/003472.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003472.png",
+      "sha256": "df8e924b4e1a0734a7e1bd9bd030b0e2f7cf720b808137e6d4e1348844136158"
+    },
+    {
+      "path": "input/masks/sky_foreground/003472.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003472.png",
+      "sha256": "69c7e9ebaf3979bd781ed1f8c32bcc950f842413ffeeeb2cdebc50fdd69c0b6b"
+    },
+    {
+      "path": "input/images/003473.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003473.jpg",
+      "sha256": "7b1880131113283761f7fc6a5ee44796a1b4a573664d44d37509afbfc64569b8"
+    },
+    {
+      "path": "input/masks/static_valid/003473.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003473.png",
+      "sha256": "d1582508c1f9a5a6dc6f6b4710e2ea871ba369b62624cdf1432d6d2af278e6dd"
+    },
+    {
+      "path": "input/masks/sky_foreground/003473.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003473.png",
+      "sha256": "85c7c41d2e0d2e18b24ccf078f96da9ef0b979afe997bacc6812e787b6798175"
+    },
+    {
+      "path": "input/images/003474.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003474.jpg",
+      "sha256": "656b57e3524bb901f91a3a4be79f29543cd4c354d7534fe701a827e4c8952a33"
+    },
+    {
+      "path": "input/masks/static_valid/003474.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003474.png",
+      "sha256": "9aff3f6b6a4b5102767e2e28d8ebe4b2a7cfd7d52f63f74821ff49006aca0821"
+    },
+    {
+      "path": "input/masks/sky_foreground/003474.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003474.png",
+      "sha256": "77c44d1ae8badcb33ad75e2aef2b187a4bc401d1c8a764ae3f3470b0aa0ceb9b"
+    },
+    {
+      "path": "input/images/003475.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003475.jpg",
+      "sha256": "dd5c14d7f59db5197127285408dd66737b7bb609a6da4165e2bddc757030498f"
+    },
+    {
+      "path": "input/masks/static_valid/003475.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003475.png",
+      "sha256": "fb9c565160665da1a21c43508036133921f82ab93d72d3ac6fd78c2f57b854d2"
+    },
+    {
+      "path": "input/masks/sky_foreground/003475.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003475.png",
+      "sha256": "741d843e774c9e4898d20b29dc0a5246524bd3485d6f4fea396b79657c7850e8"
+    },
+    {
+      "path": "input/images/003476.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003476.jpg",
+      "sha256": "ecf0e14f66eaf307a3fc2cd4ed061735fa8b6f4a5334afe8b5e8a06681f349e2"
+    },
+    {
+      "path": "input/masks/static_valid/003476.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003476.png",
+      "sha256": "1ff4c401d93750a175070dc941f1e375820f43bd5c655bcd53073b5e17d007ec"
+    },
+    {
+      "path": "input/masks/sky_foreground/003476.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003476.png",
+      "sha256": "82836c8569e105979230b741d8c5186fe619c8089d37de0c77df3ef09e9f2d2a"
+    },
+    {
+      "path": "input/images/003477.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003477.jpg",
+      "sha256": "9775c5eaabeadbd19dedf42c616fd94630f5677cac07c07d0bfd5853029b53ae"
+    },
+    {
+      "path": "input/masks/static_valid/003477.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003477.png",
+      "sha256": "0396885f88ee01f5c35c784ec405bc33ec6c1c642f69b0229ccd749adb143be5"
+    },
+    {
+      "path": "input/masks/sky_foreground/003477.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003477.png",
+      "sha256": "91230cb1351c7bdd25d8ddbf5c14b26ce6253c7a2a987a29d21787c63f9438ab"
+    },
+    {
+      "path": "input/images/003478.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003478.jpg",
+      "sha256": "cf1dc4792373e4ffb049156d18a3f861d5b339ebf3cb3205688777b3bf9b560b"
+    },
+    {
+      "path": "input/masks/static_valid/003478.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003478.png",
+      "sha256": "746a37e8778ca0fd11cccc0d9fc59263ef79142ddba1ef74ebec064c804ba678"
+    },
+    {
+      "path": "input/masks/sky_foreground/003478.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003478.png",
+      "sha256": "35c0c4d120c88c2121835799cccfe8e9c493a9517ecbb7358a26a6ae97a4b1a6"
+    },
+    {
+      "path": "input/images/003479.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003479.jpg",
+      "sha256": "a5d9cc84fbbf1d6309c1fe61a903f530820e594745e654f6a6836d38b3fbef98"
+    },
+    {
+      "path": "input/masks/static_valid/003479.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003479.png",
+      "sha256": "1cf10cd3145cc8f1c42d951eaf895cca53420302e0080cc10cf841d9be26a202"
+    },
+    {
+      "path": "input/masks/sky_foreground/003479.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003479.png",
+      "sha256": "6a035e40da14ba787df13f3a274caff496fee92125202ec1beb351df0e938df0"
+    },
+    {
+      "path": "input/images/003480.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003480.jpg",
+      "sha256": "6c0700e7ad1520f181e9adecba06405fa74b77b0bfeaa4bb37cfa5a2866adcc2"
+    },
+    {
+      "path": "input/masks/static_valid/003480.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003480.png",
+      "sha256": "840554e4d0316ffeaa3b2f9db0de3519e4ccb2d0bb7540ae9f375ca86558b107"
+    },
+    {
+      "path": "input/masks/sky_foreground/003480.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003480.png",
+      "sha256": "9d7d8c3e1a234465da9ff2ce77b196d89fb6bbe22695125c4631a04c10b8aba9"
+    },
+    {
+      "path": "input/images/003481.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003481.jpg",
+      "sha256": "33e36b2103c375bbece67f5d32441e9770991940c94bacff07271522b9e86f70"
+    },
+    {
+      "path": "input/masks/static_valid/003481.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003481.png",
+      "sha256": "5ad459b568fed2323b7e95545f10e76f3442580e080507471eb42c6a0bc811f4"
+    },
+    {
+      "path": "input/masks/sky_foreground/003481.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003481.png",
+      "sha256": "fbda70f31afa5a3027af9d633918018000dd7472df3d5962808ecd17f852f9bd"
+    },
+    {
+      "path": "input/images/003482.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003482.jpg",
+      "sha256": "3d79e4ad6d24c8928fede17baf62a04ace98b573cba78feae79086449ef215d1"
+    },
+    {
+      "path": "input/masks/static_valid/003482.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003482.png",
+      "sha256": "fc01e5135e90810cc545c2556c609446353dbaa82463eb32f6be112dc28239af"
+    },
+    {
+      "path": "input/masks/sky_foreground/003482.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003482.png",
+      "sha256": "ef36c16e8a6e6d91c0bfa46c2110010c93d38d67604abd64e67b1601687759ee"
+    },
+    {
+      "path": "input/images/003483.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003483.jpg",
+      "sha256": "4620ea4896d3ad6df61ba8c6fe376d0aa8890968f5570dcb269d4fd73f505845"
+    },
+    {
+      "path": "input/masks/static_valid/003483.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003483.png",
+      "sha256": "0c732a1e32bcb70790248ae2ad2731607babd40705deec99d2b77c4d1d38a4ca"
+    },
+    {
+      "path": "input/masks/sky_foreground/003483.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003483.png",
+      "sha256": "d44fdedf8cd8210e29f89c97f9130f3e697b56382e28d47894854597e4573c76"
+    },
+    {
+      "path": "input/images/003484.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003484.jpg",
+      "sha256": "8359c91b3c374a652385cd9ad5a586f7dbecfe6a4697b2397a69463c8b03a220"
+    },
+    {
+      "path": "input/masks/static_valid/003484.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003484.png",
+      "sha256": "357b51a63277be420cd848dfea93abd641f103aa7a71906bd2eee99f1b140767"
+    },
+    {
+      "path": "input/masks/sky_foreground/003484.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003484.png",
+      "sha256": "9de708864d33d34447a1e0bf949530ed7f33c71fb77cfa44ee68318a7fa27e9d"
+    },
+    {
+      "path": "input/images/003485.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003485.jpg",
+      "sha256": "f9968db4229feeb9b0f8fd7ba0f43ad58f8bcea88a8a13c46eec66be5b174a05"
+    },
+    {
+      "path": "input/masks/static_valid/003485.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003485.png",
+      "sha256": "521eadd6eb6893d75af134c9879a7b9d0d7241fb933d24d7ad6f509c82cac54c"
+    },
+    {
+      "path": "input/masks/sky_foreground/003485.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003485.png",
+      "sha256": "5afec87a632c96a8da1b0571b7901a4761acf310d73534192825d65a636cf8b5"
+    },
+    {
+      "path": "input/images/003486.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003486.jpg",
+      "sha256": "f69ef7218c65b614a10f2d8040fc1e544a4346dbfc72ab5789c59ece46e1e5f0"
+    },
+    {
+      "path": "input/masks/static_valid/003486.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003486.png",
+      "sha256": "3db2e8ba75652db56b90e6fd21eb065780909529ef08bc396680e9dbd1bf56b6"
+    },
+    {
+      "path": "input/masks/sky_foreground/003486.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003486.png",
+      "sha256": "42a12083a9f005028cd0c2d4220da4e6061a06a97c11951c6686f8aa7cf4d1e2"
+    },
+    {
+      "path": "input/images/003487.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003487.jpg",
+      "sha256": "47e966dd45ff009859adbc0c4ac747ca4827d3872bbb7329dbc802ed35cf4ce4"
+    },
+    {
+      "path": "input/masks/static_valid/003487.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003487.png",
+      "sha256": "8b40a8c73e72684fc99c275f657aa01a2b4b09ea5971706145cee5f9feff94cf"
+    },
+    {
+      "path": "input/masks/sky_foreground/003487.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003487.png",
+      "sha256": "e3c512a3adebdb1c8a4d21bf7ecb69a3dedd921e51af12254de58f7b7278d6b6"
+    },
+    {
+      "path": "input/images/003488.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003488.jpg",
+      "sha256": "255dc09ded295f27fd7611a8f02045d56bf3eabee0536407c00bbf885c99935b"
+    },
+    {
+      "path": "input/masks/static_valid/003488.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003488.png",
+      "sha256": "fc140ea988bafe31c04a0f5d26ce7c25f680dd91c11ae7888a96a15df5005839"
+    },
+    {
+      "path": "input/masks/sky_foreground/003488.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003488.png",
+      "sha256": "fbe64eb871f4e98a7394782b346ff25cf17de51e334582c908c02f3d6ddd5caf"
+    },
+    {
+      "path": "input/images/003489.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003489.jpg",
+      "sha256": "17cf0f6683c18e5db6ccf7d65873fe347755476598a0b16734f106b291bf42d1"
+    },
+    {
+      "path": "input/masks/static_valid/003489.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003489.png",
+      "sha256": "4531e04d340b8c682c3f2ffafc4a98a1af2d51a38c6a2a45b27d0ab80c9b74b0"
+    },
+    {
+      "path": "input/masks/sky_foreground/003489.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003489.png",
+      "sha256": "507d1a485e925769180dc74897932f164aefa7bd91ee270c804e29a929f7f822"
+    },
+    {
+      "path": "input/images/003490.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003490.jpg",
+      "sha256": "9f78b35eee67712dc9e0bd94b0f5783db439ed30ce12e0994097cdb15a3d450d"
+    },
+    {
+      "path": "input/masks/static_valid/003490.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003490.png",
+      "sha256": "bad192fb2214fb6a0845b9c97331ea9c5638e33b9f9d4631299f558c6809cf17"
+    },
+    {
+      "path": "input/masks/sky_foreground/003490.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003490.png",
+      "sha256": "a83c2074beec2e6093c6874387ae49c5a0050c664552ede33e9a544337e7988a"
+    },
+    {
+      "path": "input/images/003491.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003491.jpg",
+      "sha256": "5102807d69981ac5879774744e929ff7e1034506d93b799e6312495cfe3d7e08"
+    },
+    {
+      "path": "input/masks/static_valid/003491.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003491.png",
+      "sha256": "99d89bedd1bed114dba6da160d9e6c9361efee3d0487b0febbb43600ebc6f67f"
+    },
+    {
+      "path": "input/masks/sky_foreground/003491.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003491.png",
+      "sha256": "248085d810f3525b8d961db724c730cbcab7b41dc59dc863a288d399ffaf7440"
+    },
+    {
+      "path": "input/images/003492.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003492.jpg",
+      "sha256": "dfc6b2313d0f4b66f029d18bc69ace37e7c7b8de89b7f6169bb0163eb841d8dc"
+    },
+    {
+      "path": "input/masks/static_valid/003492.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003492.png",
+      "sha256": "a1d0d020e4344b3b3c567c131f47bb30ddb4c1968924843afaac2d686342fe03"
+    },
+    {
+      "path": "input/masks/sky_foreground/003492.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003492.png",
+      "sha256": "f64c80ef42f899fea00bcaaa38e6f0ff0d5cfb0b5d555665ce63b8ca99cc5831"
+    },
+    {
+      "path": "input/images/003493.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003493.jpg",
+      "sha256": "a2d468349fa60391d41947b309eb6b50ef534797b98e79c1403b40b62e396017"
+    },
+    {
+      "path": "input/masks/static_valid/003493.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003493.png",
+      "sha256": "9fa3352fe4b3253ca6b63862296f6a60aa9a1f5d8aa00e5ece0373f141654ec5"
+    },
+    {
+      "path": "input/masks/sky_foreground/003493.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003493.png",
+      "sha256": "4739f7dbbccd4e80d96297776765c35d6da678083416f6c1cd1acbf819c434fc"
+    },
+    {
+      "path": "input/images/003494.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003494.jpg",
+      "sha256": "c49ef089f3e35eb8173cc7f3723497a5c689497c0ba834d65fa56463aabf9be9"
+    },
+    {
+      "path": "input/masks/static_valid/003494.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003494.png",
+      "sha256": "cc1182fbcd8e087c407389baa530436d707ff0d787da8688972b08cec6b59f20"
+    },
+    {
+      "path": "input/masks/sky_foreground/003494.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003494.png",
+      "sha256": "64f8ebc30b5bd833b7c2d1532f5c36da4733462413698db46f9e9c596a90d88d"
+    },
+    {
+      "path": "input/images/003495.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003495.jpg",
+      "sha256": "8927dd35e14107b5ce6ced45c12eb75595710f9ebb774d27d8ffb619a706f349"
+    },
+    {
+      "path": "input/masks/static_valid/003495.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003495.png",
+      "sha256": "1577f04fce17edf4dbd9ff4ddbc1d2a71cc55870995777232d2a99af67ab3d85"
+    },
+    {
+      "path": "input/masks/sky_foreground/003495.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003495.png",
+      "sha256": "801fc50085de6075a0e4ea98ae16020df997a38d7e7964202f2a2c0a3e260a14"
+    },
+    {
+      "path": "input/images/003496.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003496.jpg",
+      "sha256": "aa62108ebfe942d6f68e69375e97fb44a177bba39dc37c429c8e231029c4cf06"
+    },
+    {
+      "path": "input/masks/static_valid/003496.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003496.png",
+      "sha256": "26ea27233b30e12f24baf01c7456179b6d6ad3aefc09bc795bb6e80d96e81a1a"
+    },
+    {
+      "path": "input/masks/sky_foreground/003496.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003496.png",
+      "sha256": "3d9467ca0b568b0d33986ec2d20d7b7b7395016f60be4b9195f37f617609cea5"
+    },
+    {
+      "path": "input/images/003497.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003497.jpg",
+      "sha256": "d6ef14ac86f8c35b1094f94751bfa1211777a553d100acdd5482b7ed12e19521"
+    },
+    {
+      "path": "input/masks/static_valid/003497.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003497.png",
+      "sha256": "8955c21e5d21484d84f350254c604efafdae736882b5e15b0d81e6c65ae426fe"
+    },
+    {
+      "path": "input/masks/sky_foreground/003497.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003497.png",
+      "sha256": "c0dc04066c716731004a90f67e40adcf2904ad7e33d93274896f912a2a6edd50"
+    },
+    {
+      "path": "input/images/003498.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003498.jpg",
+      "sha256": "bd4527bf98ebaec27ee2347fcda5c88b1798781332ba586e74fc76ceaf17a531"
+    },
+    {
+      "path": "input/masks/static_valid/003498.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003498.png",
+      "sha256": "af78f87f65c88d525f7a21dc77fc825af0ab4c9b348e1973cc572a9c9fc67427"
+    },
+    {
+      "path": "input/masks/sky_foreground/003498.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003498.png",
+      "sha256": "27cc913b21ad4f14698510d21285e0bf1a86bdb0e6be2d202b6bf2a644f61686"
+    },
+    {
+      "path": "input/images/003499.jpg",
+      "source": "/home/luvision/zjn/gaussian-splatting/output/EXP142_ReSplat_extend10min_20261009/frames/003499.jpg",
+      "sha256": "ade8dd7c1d7cbe111269213a2bab615853e8c30ff64a33b1cb5a479ef65a03ca"
+    },
+    {
+      "path": "input/masks/static_valid/003499.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/masks/vehicle_valid/003499.png",
+      "sha256": "1f9dd9dca69e09f4585d601ea2bb9d432fb38329622608037b500932d96b7ada"
+    },
+    {
+      "path": "input/masks/sky_foreground/003499.png",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/sky_all/foreground_valid_hard/003499.png",
+      "sha256": "73b36e786fcab5ce106671b1b44d9e457131ea74df56e2a25a58d29b9f315a68"
+    },
+    {
+      "path": "input/road/gaussians.ply",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023/road_assets/road_gaussians.ply",
+      "sha256": "1ce3d5e9ba8b84653d0fe25c1a8facd7e8ce1246143d24f41faf732402b0dbed"
+    },
+    {
+      "path": "input/road/constraints.npz",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023/road_assets/road_constraints.npz",
+      "sha256": "bfc08fd2ccf6de3a82cf57e7847e5b14e4f195bfcd636b59527722efb4ad1aca"
+    },
+    {
+      "path": "input/road/depth.npz",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023/road_assets/road_depth_targets.npz",
+      "sha256": "79a7c952b3c6989ceed044deb98aa6c95b0033d0b74f8fe285dcc1fac61a37f6"
+    },
+    {
+      "path": "input/road/reference_cameras.npz",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023/road_assets/reference_cameras.npz",
+      "sha256": "f2a709dfcc9bfacf274f5f37697132e2407a89edcb0a0a51979d6be266528259"
+    },
+    {
+      "path": "input/road/source_rows.npz",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023/road_assets/source_rows.npz",
+      "sha256": "3ee29aec88eb8cf9fe587f9d460678ecfa2eb8d4dfc19a6a8cc5e4aa672436e5"
+    },
+    {
+      "path": "input/resplat/native.ply",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023/resplat/segments/segment_00/gaussians.ply",
+      "sha256": "80937bf10afda9a37b0c141051e7acea8dfc8cf464207a169aadb8e3c47e3c39"
+    },
+    {
+      "path": "input/resplat/native.mp4",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023/resplat/segments/segment_00/video.mp4",
+      "sha256": "d5f547e71d1f39cc97f0a61ad3acbea6e6f140d0aee3a3446415eda6f7946a8c"
+    },
+    {
+      "path": "input/sparse/0/images.txt",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023/gs/data/sparse/0/images.txt",
+      "sha256": "6048aa5cd78ae383ca2bfdbdc0796f311d34d087e46e8c58cabf7e8a2bfc23bd"
+    },
+    {
+      "path": "input/sparse/0/points3D.txt",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023/gs/data/sparse/0/points3D.txt",
+      "sha256": "b408839b52203624186028375a6157302f27c3ad6b43730df59111429cc0d8f6"
+    },
+    {
+      "path": "input/sparse/0/points3D.ply",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023/gs/data/sparse/0/points3D.ply",
+      "sha256": "84585f60956b534f1486de9bce213d48ae8530b8d7374616317dc953348ed01c"
+    },
+    {
+      "path": "input/sparse/0/cameras.txt",
+      "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_350s360s_roma_resplat_2000_20261023/gs/data/sparse/0/cameras.txt",
+      "sha256": "2945beae7ec4788d5e2338c7962db54b8df446877ff8f69127f6dfbe0826cb1a"
+    }
+  ],
+  "frame_range": [
+    3400,
+    3500
+  ],
+  "source_seconds": [
+    350,
+    360
+  ],
+  "image_count": 100,
+  "width": 666,
+  "height": 370,
+  "fps": 10,
+  "camera_selection": "Exact source rows by image name; no pose/K change or frame renaming",
+  "road_points": {
+    "source": "/home/luvision/zjn/gaussian-splatting/superDIM/experiments/sanhuan_340s610s_glomap1000_roma_20261022/block_00/dense_road_v2/ROAD_fitted/new_points.npz",
+    "source_sha256": "9f8fa71888eeff8bf4fc9e4e59fc8bc79e745b58858462f8fee3d65df06ae0b5",
+    "source_rows": "input/road/source_rows.npz",
+    "count": 1553808,
+    "XYZ_RGB_unchanged": true,
+    "source_image_index_range": [
+      180,
+      399
+    ]
+  },
+  "road_coverage": "Exact correction_mask from input/road/depth.npz, not the full semantic road mask",
+  "sparse_model": "100-view camera-only COLMAP text container, no sparse 3D points",
+  "geometry_support": "Road assets include neighboring-view context from the original1000-view road batch",
+  "source_camera_batch_global_frames": [
+    3200,
+    4200
+  ]
+}

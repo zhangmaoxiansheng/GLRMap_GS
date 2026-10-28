@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "example": "sanhuan_350s360s_images_only_no_sky",
+  "image_count": 100,
+  "stage": "RGB -> SAM -> SfM -> RoMa -> road -> ReSplat -> GS -> rendering",
+  "verified_current_pipeline": true,
+  "sky_segmentation": false,
+  "coordinate_normalization": false,
+  "reference_result": "result_images_no_sky",
+  "verification": "result_images_no_sky/summary.json",
+  "input_checksum": "IMAGES_SHA256SUMS",
+  "result_archive": {
+    "name": "demo-results-v2.zip",
+    "bytes": 129337785,
+    "sha256": "4f9af7453348e05db9b19d2e1dbb210a81f57eeceba2133f192f3c2404c409ae"
+  },
+  "visual_quality_accepted": false
+}

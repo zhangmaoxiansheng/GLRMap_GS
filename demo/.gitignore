@@ -1,0 +1,6 @@
+# Keep the actual demo assets when copying the project; do not commit large binaries.
+input/
+result/
+result_images_no_sky/
+result_sfm1000_gs100/
+result_100_images/

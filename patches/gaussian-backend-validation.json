@@ -1,0 +1,50 @@
+{
+  "validation_date": "2026-10-28",
+  "clean_fixed_revision_checkout": true,
+  "checkout_method": "Local upstream Git objects checked out at the pinned revisions; working-tree changes were supplied only by the distributed patches",
+  "git_apply_check_passed": true,
+  "patched_files_match_active_backend": true,
+  "patches_sha256": {
+    "gaussian-splatting.patch": "aeaaf165c386c920f9204ed72343e4a0fa2133f6d8e1f9be4843d22863954844",
+    "diff-gaussian-rasterization.patch": "84c6e89c2a299fb6a6abd06dcf23e0e5984b657ca1723bf3029e3e203313285d"
+  },
+  "fresh_CUDA_build": {
+    "passed": true,
+    "isolated_venv": true,
+    "base_python_dependencies": "Reused installed Python dependencies through --system-site-packages; both CUDA extensions compiled and installed into the isolated venv",
+    "python": "3.9.25",
+    "torch": "2.6.0+cu118",
+    "cuda_toolkit": "11.8",
+    "gcc": "9.4.0",
+    "gpu_compute_capability": "8.9"
+  },
+  "cuda_smoke": {
+    "source_checks_passed": true,
+    "backend": "/home/luvision/zjn/GLRMap_GS/experiments/gs_backend_reproduction_3wx_jk75/gaussian-splatting",
+    "backend_revision": "54c035f7834b564019656c3e3fcc3646292f727d",
+    "rasterizer_revision": "9c5c2028f6fbee2be239bc4c9421ff894fe4fbe0",
+    "cuda": {
+      "device": "NVIDIA GeForce RTX 4090",
+      "torch": "2.6.0+cu118",
+      "torch_cuda": "11.8",
+      "init_ply": true,
+      "masked_gradients": true,
+      "CUDA_render_backward_optimizer_step": true,
+      "rasterizer_python": "/home/luvision/zjn/GLRMap_GS/experiments/gs_backend_reproduction_3wx_jk75/env/lib/python3.9/site-packages/diff_gaussian_rasterization/__init__.py",
+      "rasterizer_cuda": "/home/luvision/zjn/GLRMap_GS/experiments/gs_backend_reproduction_3wx_jk75/env/lib/python3.9/site-packages/diff_gaussian_rasterization/_C.cpython-39-x86_64-linux-gnu.so",
+      "simple_knn_cuda": "/home/luvision/zjn/GLRMap_GS/experiments/gs_backend_reproduction_3wx_jk75/env/lib/python3.9/site-packages/simple_knn/_C.cpython-39-x86_64-linux-gnu.so"
+    }
+  },
+  "integration_training": {
+    "passed": true,
+    "purpose": "Backend integration check, not a new demo quality reference",
+    "views": 100,
+    "iterations": 200,
+    "Gaussian_count": 1235094,
+    "road_count": 852563,
+    "road_fields_bit_exact": true,
+    "elapsed_seconds": 22.584458274999633,
+    "result_sha256": "2e16d4a6223a7dc2ad4b7e53025d0d01a549a3f08b8260c116a69b90e19d7a78"
+  },
+  "local_validation_directory": "experiments/gs_backend_reproduction_3wx_jk75"
+}
